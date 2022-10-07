@@ -1,0 +1,17 @@
+@mixin ftr-bar($bg-color, $link-color: blue) {
+   position: absolute;
+   bottom: 0;
+ 
+   width: 100%;
+   padding: 0.5rem 0;
+
+   background-color: $bg-color;
+
+   span#link-text {
+       font-size: 1.15rem;
+       margin-left: 90%;
+       color: $link-color;
+       text-decoration: underline;
+       cursor: pointer;
+   }
+}

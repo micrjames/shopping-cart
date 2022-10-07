@@ -1,0 +1,107 @@
+@import "utils/button", "utils/utils";
+
+@mixin main-listing($bg-color) {
+   background-color: $bg-color;
+
+   width: 100% - 2 * 15%;
+   height: 100% - 2 * 5%;
+
+   margin: 2% auto;
+   border-radius: 5px;
+   
+   overflow: scroll;
+
+   #recipe-result-figure {
+	  &-thumb {
+		 width: 100%;
+		 height: 350px;
+	  }
+	  &-title {
+		 position: relative;
+		 bottom: 325px;
+		 background-color: white;
+		 padding: 0.75rem 0;
+		 text-align: center;
+		 font-size: 1.5rem;
+	  }
+   }
+   #recipe-result-ingredients {
+	  &-title{
+		 text-align: center;
+		 margin-bottom: 1.5rem;
+		 font-size: 1.5rem;
+	  }
+	  ul {
+		 list-style-position: inside;
+		 margin: 0 2rem;
+		 column-count: 2;
+
+		 li {
+			span {
+			   &:first-child {
+				  margin: 0 0.25rem;
+			   }
+			}
+		 }
+	  }
+   }
+   #recipe-result-instructions {
+	  padding: 1.2rem;
+	  &-title {
+		 text-align: center;
+		 margin-bottom: 1.5rem;
+		 font-size: 1.5rem;
+	  }
+	  &-text-list {
+		 list-style-type: none;
+		 list-style-position: inside;
+		 counter-reset: instruction-step; 
+		 column-count: 2;
+		 li {
+			&::before {
+			   counter-increment: instruction-step;
+			   content: "Step " counter(instruction-step) ". ";
+			   font-weight: bolder;
+			}
+			&::after {
+			   content: ".";
+			}
+		 }
+	  }
+   }
+   #recipe-result-controls {
+	  width: 50%;
+	  margin: 1.5rem auto;
+	  &-preamble {
+		 font-size: 1.25rem;
+	  }
+	  &-btn-group {
+		 display: inline-block;
+		 .btn {
+			@include button(0.75rem, 0.75rem 1rem, 0 0.5rem);
+			@include box-shadow(6px, 2px, 9px, 2px, rgba(0, 0, 0, 0.6), false); 
+			@include transition-ease;
+
+			border-radius: 50%;
+			background-color: transparent;
+			color: black;
+
+			&:first-child {
+			   margin-right: 0.75rem;
+			}
+
+			&:active {
+			   box-shadow: none;
+			}
+
+			&:disabled {
+			   box-shadow: none;
+			   opacity: 0.2;
+			}
+		 }
+		 &-count {
+			font-size: 1.25rem;
+		 }
+	  }
+   }
+}

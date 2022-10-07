@@ -1,0 +1,16 @@
+@import 'utils/config', './hdr-bar', './ftr-bar', './main-listing';
+$primary-color: lightgray;
+
+#hdr-bar {
+   @include hdr-bar($primary-color);
+}
+main {
+   width: 100vw;
+   height: 90vh;
+   #main-section-listing {
+	  @include main-listing($primary-color);
+   }
+}
+#ftr-bar {
+   @include ftr-bar($primary-color);
+}
