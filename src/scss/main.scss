@@ -1,4 +1,5 @@
-@import 'utils/config', './hdr-bar', './ftr-bar', './main-listing';
+@use 'sass:list';
+@import 'utils/config', 'hdr-bar', 'ftr-bar', 'main-listing', 'utils/button', 'utils/utils', 'choices-btns';
 $primary-color: lightgray;
 
 #hdr-bar {
@@ -7,6 +8,9 @@ $primary-color: lightgray;
 main {
    width: 100vw;
    height: 90vh;
+   #recipe-choice-btn-group {
+	  @extend %choices-btns;
+   }
    #main-section-listing {
 	  @include main-listing($primary-color);
    }
