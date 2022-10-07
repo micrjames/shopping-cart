@@ -1,8 +1,6 @@
 import { createSpan, createListItem } from "./DOMutils.js";
 
-const createResultIngredientsList = function(data) {                       
-    const recipeResultIngredientsList = document.createElement("ul");       
-    recipeResultIngredientsList.id = "recipe-result-ingredients-list";
+const createResultIngredientsList = function(recipeResultIngredientsList, data) {                       
     for(let i = 1; i <= 20; i++) {                                          
         const ingredientsText = data[`strIngredient${i}`];
         const ingredientsMeasure = data[`strMeasure${i}`];                                                
@@ -37,33 +35,35 @@ const setRecipeResult = function(recipeResult, data) {
    
    const rRFImageThumb = recipeResultFigure.children.namedItem("recipe-result-figure-thumb");
    rRFImageThumb.src = data.strMealThumb;                                         
+
    const recipeResultInstructions = recipeResult.children.namedItem("recipe-result-instructions");
    const recipeResultIngredients = recipeResult.children.namedItem("recipe-result-ingredients");
+   const recipeResultIngredientsList = recipeResultIngredients.children.namedItem("recipe-result-ingredients-list");
    const recipeInstructionsTextList = recipeResultInstructions.children.namedItem("recipe-result-instructions-text-list");
     
-   recipeResultIngredients.appendChild(createResultIngredientsList(data));
+   recipeResultIngredients.appendChild(createResultIngredientsList(recipeResultIngredientsList, data));
    createResultInstructionsList(recipeInstructionsTextList, data);
 };
 
 const resetRecipeResult = function(recipeResult) {
-   const recipeResultFigure = recipeResult.children.namedItem("recipe-result-figure");
-   const rRFtitle = recipeResultFigure.children.namedItem("recipe-result-figure-title");
-   const rRFImageThumb = recipeResultFigure.children.namedItem("recipe-result-figure-thumb");
-   const recipeResultInstructions = recipeResult.children.namedItem("recipe-result-instructions");
-   const recipeResultIngredients = recipeResult.children.namedItem("recipe-result-ingredients");
-   
-   const recipeInstructionsTextList = recipeResultInstructions.children.namedItem("recipe-result-instructions-text-list");
-    
-   const recipeResultIngredientsList = recipeResultIngredients.children.namedItem("recipe-result-ingredients-list");
-   while(recipeResultIngredientsList.firstChild) {
-       recipeResultIngredientsList.removeChild(recipeResultIngredientsList.lastChild);
-   }
-   rRFImageThumb.src = null;                                         
-   rRFtitle.textContent = null;
+    const recipeResultFigure = recipeResult.children.namedItem("recipe-result-figure");
+    const rRFtitle = recipeResultFigure.children.namedItem("recipe-result-figure-title");
+	rRFtitle.textContent = null;
 
-   while(recipeInstructionsTextList.firstChild) {
-       recipeInstructionsTextList.removeChild(recipeInstructionsTextList.lastChild);
-   }
+    const rRFImageThumb = recipeResultFigure.children.namedItem("recipe-result-figure-thumb");
+    rRFImageThumb.src = null;                                         
+
+    const recipeResultIngredients = recipeResult.children.namedItem("recipe-result-ingredients");
+    const recipeResultIngredientsList = recipeResultIngredients.children.namedItem("recipe-result-ingredients-list");
+    while(recipeResultIngredientsList.firstChild) {
+	    recipeResultIngredientsList.removeChild(recipeResultIngredientsList.lastChild);
+	}
+
+    const recipeResultInstructions = recipeResult.children.namedItem("recipe-result-instructions");
+    const recipeInstructionsTextList = recipeResultInstructions.children.namedItem("recipe-result-instructions-text-list");
+    while(recipeInstructionsTextList.firstChild) {
+	    recipeInstructionsTextList.removeChild(recipeInstructionsTextList.lastChild);
+	}
 };
 
 export { setRecipeResult, resetRecipeResult };
