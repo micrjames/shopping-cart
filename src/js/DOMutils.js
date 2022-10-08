@@ -53,4 +53,10 @@ const addIcon = function(context, name, className = false) {
    if(className) context.classList.add(`${name}`);
 };
 
-export { createSpan, createListItem, createBtn, createBtnGroup }; 
+const removeChildren = function(context) {
+    while(context.firstChild) {
+	    context.removeChild(context.lastChild);
+	}
+};
+
+export { createSpan, createListItem, createBtn, createBtnGroup, removeChildren }; 
