@@ -1,5 +1,6 @@
-import { recipeListing, recipeChoices, getRecipes } from "./incs.js";
+import { recipeListing, recipeChoices, getRecipes, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus } from "./incs.js";
 import { resetRecipeResult, setRecipeResult } from "./recipeResults.js";
+import { setRecipeServingCount } from "./recipeResult.js";
 import { createBtn } from "./DOMutils.js";
 
 const recipesPromise = getRecipes();
@@ -18,3 +19,12 @@ recipesPromise.then(res => {
 	});
 }).catch(err => console.log(err));
 
+let recipeServingCount = 0;
+setRecipeServingCount(recipeServingCount);
+
+recipeResultControlsBtnGroupMinus.addEventListener("click", () => {
+   if(recipeServingCount > 0) setRecipeServingCount(--recipeServingCount);
+});
+recipeResultControlsBtnGroupPlus.addEventListener("click", () => {
+   setRecipeServingCount(++recipeServingCount);
+});

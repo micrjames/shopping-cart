@@ -1,5 +1,6 @@
 import { createResultIngredientsList, createResultInstructionsList } from "./recipeResults.js";
 import { removeChildren } from "./DOMutils.js";
+import { recipeResultControlsBtnGroupCount } from "./incs.js";
 
 const createTitle = function(figure, text) {
    const title = figure.children.namedItem("recipe-result-figure-title");
@@ -31,4 +32,8 @@ const removeInstructions = function(instructions) {
    removeChildren(instructionsTextList);
 };
 
-export { createTitle, createThumb, createIngredients, createInstructions, removeIngredients, removeInstructions };
+const setRecipeServingCount = function(count) {
+   recipeResultControlsBtnGroupCount.textContent = count; 
+};
+
+export { createTitle, createThumb, createIngredients, createInstructions, removeIngredients, removeInstructions, setRecipeServingCount };
