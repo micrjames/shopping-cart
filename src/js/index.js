@@ -1,7 +1,27 @@
-import { recipeListing, recipeChoices, getRecipes, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus } from "./incs.js";
+import { recipeListing, recipeChoices, getRecipes, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, tblBodyVals } from "./incs.js";
+import { createTblBody, createTblFoot } from "./orderSummary.js";
 import { resetRecipeResult, setRecipeResult } from "./recipeResults.js";
 import { setRecipeServingCount } from "./recipeResult.js";
 import { createBtn } from "./DOMutils.js";
+
+cartItems.addEventListener("click", function() {
+    if(tooltipText.style.visibility == "visible") {
+	   tooltipText.style.visibility = "hidden";
+	   tooltipText.style.opacity = 0;
+	} else {
+	   tooltipText.style.visibility = "visible";
+	   tooltipText.style.opacity = 1;
+	}
+});
+cartItemsCount.textContent = "0";
+
+tblBodyVals.qty = 1;
+tblBodyVals.item = "Egg";
+tblBodyVals.price = 1.25;
+const orderSummaryTblBodyRow = createTblBody(tblBodyVals);
+orderSummaryTblBody.appendChild(orderSummaryTblBodyRow);
+
+createTblFoot(orderSummaryTblFoot, tblBodyVals.price);
 
 const recipesPromise = getRecipes();
 recipesPromise.then(res => {

@@ -10,8 +10,31 @@
 	</head>
 	<body>
 	   <header id="hdr-bar">
-			<i id="shopping-cart-trigger" class="fa-solid fa-cart-shopping"></i>
-			<span id="cart-items-count">0</span>
+			<div id="cart-items">
+			    <i id="shopping-cart-trigger" class="fa-solid fa-cart-shopping"></i>
+			    <span id="cart-items-count"></span>
+			    <div id="tooltip-text" class="tooltip-text">
+				    <table id="order-summary-tbl">
+					   <caption>Order Summary</caption>
+					   <thead>
+						  <tr>
+							 <th>Qty</th>
+							 <th>Item</th>
+							 <th>Price</th>
+						  </tr>
+					   </thead>
+					   <tbody id="order-summary-tbl-body"></tbody>
+					   <tfoot id="order-summary-tbl-foot">
+						  <tr id="order-summary-tbl-foot-row">
+							 <th scope="row" colspan="2">Total</th>
+							 <td id="order-summary-tbl-foot-row-total" colspan="2"></td>
+						  </tr>
+					   </tfoot>
+					</table>
+
+					<button id="shopping-cart-btn-group-btn" class="btn">Proceed to Checkout</button>
+				</div>
+			</div>
 	   </header>
 	   <main id="main">
 		  <section id="recipe-choice-btn-group"></section> 

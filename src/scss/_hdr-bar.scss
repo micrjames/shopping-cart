@@ -1,23 +1,27 @@
+@import "tooltip";
+
 @mixin hdr-bar($bg-color, $icon-color: black) {
    background-color: $bg-color;
    padding: 0.9rem 0;
  
    display: flex;
    justify-content: flex-end;
-   i {
-       font-size: 1.75rem;
-       margin-right: 1.5rem;
-	   color: $icon-color;
- 
-       cursor: pointer;
-   }
-   span {
-	   position: relative;
-	   bottom: 10px;
-	   right: 30px;
-	   background-color: red;
-	   padding: 0.10rem 0.5rem;
-	   border-radius: 3px;
-	   font-size: 1.05rem;
+   #cart-items {
+	  i {
+		  font-size: 1.75rem;
+		  color: $icon-color;
+	
+		  cursor: pointer;
+	  }
+	  &-count {
+		  position: relative;
+		  bottom: 15px;
+		  right: 15px;
+		  background-color: red;
+		  padding: 0.10rem 0.5rem;
+		  border-radius: 3px;
+		  font-size: 1.05rem;
+	  }
+	  @include tooltip(1rem, white, black);
    }
 }

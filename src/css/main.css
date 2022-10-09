@@ -4,6 +4,41 @@
   margin: 0;
 }
 
+#hdr-bar #cart-items .tooltip-text table {
+  width: 100%;
+  font-size: 1.2rem;
+  border-collapse: collapse;
+}
+#hdr-bar #cart-items .tooltip-text table caption {
+  font-size: 1.5rem;
+  padding: 1.25rem;
+}
+#hdr-bar #cart-items .tooltip-text table thead tr {
+  border-bottom: 1px solid #ddd;
+}
+#hdr-bar #cart-items .tooltip-text table thead tr th {
+  padding: 0.75rem 0;
+}
+#hdr-bar #cart-items .tooltip-text table tbody tr th {
+  font-weight: bolder;
+}
+#hdr-bar #cart-items .tooltip-text table tbody tr td {
+  padding: 0.75rem 0;
+}
+#hdr-bar #cart-items .tooltip-text table tbody tr td:last-child::before {
+  content: "$";
+}
+#hdr-bar #cart-items .tooltip-text table tfoot tr th {
+  font-size: 1.35rem;
+}
+#hdr-bar #cart-items .tooltip-text table tfoot tr td {
+  border-top: 1px dashed #aaa;
+  padding: 1.5rem 0;
+}
+#hdr-bar #cart-items .tooltip-text table tfoot tr td::before {
+  content: "$";
+}
+
 main #recipe-choice-btn-group {
   width: 74%;
   margin: 0 auto;
@@ -38,20 +73,63 @@ main #recipe-choice-btn-group .btn:active {
   display: flex;
   justify-content: flex-end;
 }
-#hdr-bar i {
+#hdr-bar #cart-items {
+  position: relative;
+}
+#hdr-bar #cart-items i {
   font-size: 1.75rem;
-  margin-right: 1.5rem;
   color: black;
   cursor: pointer;
 }
-#hdr-bar span {
+#hdr-bar #cart-items-count {
   position: relative;
-  bottom: 10px;
-  right: 30px;
+  bottom: 15px;
+  right: 15px;
   background-color: red;
   padding: 0.1rem 0.5rem;
   border-radius: 3px;
   font-size: 1.05rem;
+}
+#hdr-bar #cart-items .tooltip-text {
+  width: 75vw;
+  font-size: 1rem;
+  visibility: hidden;
+  top: 120%;
+  left: -375%;
+  transform: translateX(-50%);
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 10px;
+  white-space: nowrap;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1s;
+}
+#hdr-bar #cart-items .tooltip-text .btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 0.65rem 1.2rem;
+  margin: 1.2rem 0;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+#hdr-bar #cart-items .tooltip-text::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  border-color: transparent transparent white transparent;
+  left: 97%;
+  transform: translateX(-97%);
+  border-width: 10px;
+  border-style: solid;
 }
 
 main {
