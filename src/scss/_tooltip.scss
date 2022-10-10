@@ -2,8 +2,11 @@
 
 @mixin tooltip($font-size, $background-color, $text-color, $displacement: null) {
    position: relative;
+   z-index: 1;
    .tooltip-text {
 	  width: 75vw;
+	  height: 75vh;
+	  overflow: scroll;
 	  font-size: $font-size;
 	  visibility: hidden;
 	  top: 120%;

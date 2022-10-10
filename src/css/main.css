@@ -35,7 +35,7 @@
   border-top: 1px dashed #aaa;
   padding: 1.5rem 0;
 }
-#hdr-bar #cart-items .tooltip-text table tfoot tr td::before {
+#hdr-bar #cart-items .tooltip-text table tfoot tr td:last-child::before {
   content: "$";
 }
 
@@ -75,6 +75,7 @@ main #recipe-choice-btn-group .btn:active {
 }
 #hdr-bar #cart-items {
   position: relative;
+  z-index: 1;
 }
 #hdr-bar #cart-items i {
   font-size: 1.75rem;
@@ -92,6 +93,8 @@ main #recipe-choice-btn-group .btn:active {
 }
 #hdr-bar #cart-items .tooltip-text {
   width: 75vw;
+  height: 75vh;
+  overflow: scroll;
   font-size: 1rem;
   visibility: hidden;
   top: 120%;
