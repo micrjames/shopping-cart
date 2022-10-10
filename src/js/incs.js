@@ -28,10 +28,10 @@ const getRecipes = async function() {
     return await fetchData("../food_db.json");
 }
 
-const tblBodyVals =  {                                                                                  
+const tblRowVals =  {                                                                                  
     "qty": 0,
     "item": null,
     "price": 0
 };
 
-export { getRecipe, getRecipes, recipeListing, recipeChoices, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, recipeResultControlsBtnGroupCount, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, tblBodyVals };
+export { getRecipe, getRecipes, recipeListing, recipeChoices, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, recipeResultControlsBtnGroupCount, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, tblRowVals };

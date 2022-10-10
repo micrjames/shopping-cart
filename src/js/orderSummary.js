@@ -1,7 +1,17 @@
-const createTblBody = function(data) {
-   const tblRow = createTblBodyRow(data);
+import { removeChildren } from "./DOMutils.js";
 
-   return tblRow;
+const createTblBody = function(tblBody, vals) {
+   vals.forEach(val => {
+	  const tblRow = createTblBodyRow(val);
+	  tblBody.appendChild(tblRow);
+   });
+};
+
+const removeTblBody = function(tblBody) {
+    const tblBodyRow = tblBody.children[0];
+    removeTblBodyRow(tblBodyRow);
+
+    removeChildren(tblBody);
 };
 
 const createTblBodyRow = function(data) {
@@ -18,6 +28,10 @@ const createTblBodyRow = function(data) {
    tblRow.appendChild(tblRowPrice);
    
    return tblRow;
+};
+
+const removeTblBodyRow = function(tblBodyRow) {
+   removeChildren(tblBodyRow);
 };
 
 const createTblBodyRowQty = function(qty) {
@@ -51,4 +65,4 @@ const createTblFoot = function(tblFoot, total) {
    tblFootRowTotal.textContent = total;
 };
 
-export { createTblBody, createTblFoot };
+export { createTblBody, removeTblBody, createTblFoot };
