@@ -3,12 +3,14 @@ import { createTblBodyRow, removeTblBody, createTblFoot } from "./orderSummary.j
 import { resetRecipeResult, setRecipeResult } from "./recipeResults.js";
 import { setRecipeServingCount } from "./recipeResult.js";
 import { createBtn } from "./DOMutils.js";
-import { setTooltipOpenState, getNumIngredients } from "./utils.js";
+import { setTooltipOpenState, getNumIngredients, getIngredients, setItemsCount } from "./utils.js";
 
 let whichRecipe;
 let recipeServingCount = 0;
 let ingredientsLength = 0;
 let cartItemsCountTotal = 0;
+
+setItemsCount(cartItemsCount, cartItemsCountTotal, recipeServingCount); 
 
 cartItems.addEventListener("click", function() {
     if(tooltipText.style.visibility == "visible") {
@@ -17,7 +19,7 @@ cartItems.addEventListener("click", function() {
 	} else {
 	   setTooltipOpenState(tooltipText, "open");
 	   for(let i = 1; i < 20; i++) {
-		  const ingredient = whichRecipe[`strIngredient${i}`];
+		  const ingredient = getIngredients(whichRecipe, i);
 		  if(ingredient && recipeServingCount) {
 			 tblRowVals.qty = 1;
 			 tblRowVals.item = ingredient;
@@ -32,7 +34,6 @@ cartItems.addEventListener("click", function() {
     const totalPrice = 1.25;
     createTblFoot(orderSummaryTblFoot, totalQty, totalPrice);
 });
-cartItemsCount.textContent = recipeServingCount;
 
 const recipesPromise = getRecipes();
 recipesPromise.then(res => {
@@ -56,15 +57,13 @@ recipesPromise.then(res => {
 	});
 }).catch(err => console.log(err));
 
-setRecipeServingCount(recipeServingCount);
-
 recipeResultControlsBtnGroupMinus.addEventListener("click", () => {
-   if(recipeServingCount > 0) setRecipeServingCount(--recipeServingCount);
-   cartItemsCountTotal = recipeServingCount * ingredientsLength;
-   cartItemsCount.textContent = cartItemsCountTotal;
+   if(recipeServingCount > 0) {
+	  cartItemsCountTotal -= ingredientsLength;
+	  setItemsCount(cartItemsCount, --recipeServingCount, cartItemsCountTotal);
+   }
 });
 recipeResultControlsBtnGroupPlus.addEventListener("click", () => {
-   setRecipeServingCount(++recipeServingCount);
-   cartItemsCountTotal = recipeServingCount * ingredientsLength;
-   cartItemsCount.textContent = cartItemsCountTotal;
+   cartItemsCountTotal += ingredientsLength;
+   setItemsCount(cartItemsCount, ++recipeServingCount, cartItemsCountTotal);
 });
