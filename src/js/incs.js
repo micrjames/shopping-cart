@@ -28,10 +28,9 @@ const getRecipes = async function() {
     return await fetchData("../food_db.json");
 }
 
-const tblRowVals =  {                                                                                  
-    "qty": 0,
-    "item": null,
-    "price": 0
-};
+const priceFormatter = new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+});
 
-export { getRecipe, getRecipes, recipeListing, recipeChoices, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, recipeResultControlsBtnGroupCount, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, tblRowVals };
+export { getRecipe, getRecipes, recipeListing, recipeChoices, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, recipeResultControlsBtnGroupCount, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter };

@@ -1,38 +1,37 @@
-import { recipeListing, recipeChoices, getRecipes, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, tblRowVals } from "./incs.js";
-import { createTblBodyRow, removeTblBody, createTblFoot } from "./orderSummary.js";
+import { recipeListing, recipeChoices, getRecipes, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter } from "./incs.js";
+import { createTblBody, removeTblBody, createTblFoot } from "./orderSummary.js";
 import { resetRecipeResult, setRecipeResult } from "./recipeResults.js";
 import { setRecipeServingCount } from "./recipeResult.js";
 import { createBtn } from "./DOMutils.js";
-import { setTooltipOpenState, getNumIngredients, getIngredients, setItemsCount } from "./utils.js";
+import { calcTotals, setTooltipOpenState, getIngredients, setItemsCount, setOrderVals } from "./utils.js";
 
 let whichRecipe;
 let recipeServingCount = 0;
-let ingredientsLength = 0;
+let numIngredients = 0;
 let cartItemsCountTotal = 0;
+let totalQty = 0;
+let totalPrice = 0;
+let tblRowValsArr = [];
+let ingredients;
 
 setItemsCount(cartItemsCount, cartItemsCountTotal, recipeServingCount); 
 
 cartItems.addEventListener("click", function() {
     if(tooltipText.style.visibility == "visible") {
 	   setTooltipOpenState(tooltipText, "closed");
-	   removeTblBody(orderSummaryTblBody);
+	   recipeServingCount = 0;
+	   setRecipeServingCount(recipeServingCount);
 	} else {
 	   setTooltipOpenState(tooltipText, "open");
-	   for(let i = 1; i < 20; i++) {
-		  const ingredient = getIngredients(whichRecipe, i);
-		  if(ingredient && recipeServingCount) {
-			 tblRowVals.qty = 1;
-			 tblRowVals.item = ingredient;
-			 tblRowVals.price = 1.25;
-			 const tblBodyRow = createTblBodyRow(tblRowVals);
-			 orderSummaryTblBody.appendChild(tblBodyRow);
-
-		  }
+	   if(ingredients && recipeServingCount) {
+		  console.log(tblRowValsArr);
+		  removeTblBody(orderSummaryTblBody);
+		  createTblBody(orderSummaryTblBody, tblRowValsArr);
 	   }
 	}
-    const totalQty = 1;
-    const totalPrice = 1.25;
-    createTblFoot(orderSummaryTblFoot, totalQty, totalPrice);
+    totalQty = calcTotals(tblRowValsArr, "qty");
+    totalPrice = calcTotals(tblRowValsArr, "price");
+    createTblFoot(orderSummaryTblFoot, totalQty, priceFormatter.format(totalPrice));
 });
 
 const recipesPromise = getRecipes();
@@ -40,14 +39,15 @@ recipesPromise.then(res => {
     const recipes = res.meals;
     const randomRecipeIndex = Math.floor(Math.random() * recipes.length);
 	whichRecipe = recipes[randomRecipeIndex];
-	ingredientsLength = getNumIngredients(whichRecipe);
+    ingredients = getIngredients(whichRecipe);
+	numIngredients = ingredients.length;
     setRecipeResult(recipeListing, whichRecipe);
     recipes.forEach((recipe, index) => {
 	  const choiceBtn = createBtn(`recipe-choice-btn-group-${index}`, "btn");
 	  choiceBtn.textContent = `${index}`;
 	  choiceBtn.addEventListener("click", () => {
 		  whichRecipe = recipe;
-		  ingredientsLength = getNumIngredients(whichRecipe);
+		  numIngredients = ingredients.length;
 		  resetRecipeResult(recipeListing);
 		  setRecipeResult(recipeListing, whichRecipe);
 		  recipeServingCount = 0;
@@ -59,11 +59,15 @@ recipesPromise.then(res => {
 
 recipeResultControlsBtnGroupMinus.addEventListener("click", () => {
    if(recipeServingCount > 0) {
-	  cartItemsCountTotal -= ingredientsLength;
+	  cartItemsCountTotal -= numIngredients;
 	  setItemsCount(cartItemsCount, --recipeServingCount, cartItemsCountTotal);
+
+	  tblRowValsArr = setOrderVals(tblRowValsArr, ingredients, recipeServingCount, "minus");
    }
 });
 recipeResultControlsBtnGroupPlus.addEventListener("click", () => {
-   cartItemsCountTotal += ingredientsLength;
+   cartItemsCountTotal += numIngredients;
    setItemsCount(cartItemsCount, ++recipeServingCount, cartItemsCountTotal);
+
+   tblRowValsArr = setOrderVals(tblRowValsArr, ingredients, recipeServingCount, "plus");
 });
