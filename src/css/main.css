@@ -4,6 +4,9 @@
   margin: 0;
 }
 
+#hdr-bar #cart-items .tooltip-text #order-summary {
+  text-align: center;
+}
 #hdr-bar #cart-items .tooltip-text #order-summary table {
   width: 100%;
   font-size: 1.2rem;
@@ -102,7 +105,6 @@ main #recipe-choice-btn-group .btn:active {
   transform: translateX(-50%);
   background-color: white;
   color: black;
-  text-align: center;
   padding: 10px;
   white-space: nowrap;
   border-radius: 5px;
@@ -110,6 +112,9 @@ main #recipe-choice-btn-group .btn:active {
   z-index: 1;
   opacity: 0;
   transition: opacity 1s;
+}
+#hdr-bar #cart-items .tooltip-text #default-summary {
+  text-align: center;
 }
 #hdr-bar #cart-items .tooltip-text #default-summary i {
   margin: 5rem 0;
@@ -128,6 +133,29 @@ main #recipe-choice-btn-group .btn:active {
 }
 #hdr-bar #cart-items .tooltip-text #default-summary p:last-child i {
   font-size: 1.5rem;
+}
+#hdr-bar #cart-items .tooltip-text #order-summary #list-view-toggle-btn {
+  position: relative;
+  left: 40%;
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  border: 3px solid black;
+  background-color: transparent;
+}
+#hdr-bar #cart-items .tooltip-text #order-summary #list-view-toggle-btn:active {
+  background-color: black;
+}
+#hdr-bar #cart-items .tooltip-text #order-summary #list-view-toggle-btn:active i {
+  color: white;
 }
 #hdr-bar #cart-items .tooltip-text #order-summary #order-summary-btn-group {
   display: flex;

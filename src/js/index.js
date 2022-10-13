@@ -1,5 +1,5 @@
-import { recipeListing, recipeChoices, getRecipes, orderSummaryBtnGroupClearBtn, orderSummaryBtnGroupCheckoutBtn, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter, orderSummary, defaultSummary } from "./incs.js";
-import { createTblBody, removeTblBody, createTblFoot } from "./orderSummary.js";
+import { recipeListing, recipeChoices, getRecipes, orderSummaryBtnGroupClearBtn, orderSummaryBtnGroupCheckoutBtn, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter, orderSummary, defaultSummary, listViewToggleBtn, orderSummaryList, orderSummaryTbl } from "./incs.js";
+import { createTblBody, removeTblBody, createTblFoot } from "./orderSummaryTbl.js";
 import { resetRecipeResult, setRecipeResult } from "./recipeResults.js";
 import { setRecipeServingCount } from "./recipeResult.js";
 import { createBtn } from "./DOMutils.js";
@@ -13,6 +13,8 @@ let totalQty = 0;
 let totalPrice = 0;
 let tblRowValsArr = [];
 let ingredients;
+let showDefault = true;
+let showTblView = true;
 
 setItemsCount(cartItemsCount, cartItemsCountTotal, recipeServingCount); 
 
@@ -23,19 +25,37 @@ cartItems.addEventListener("click", function() {
 	   setRecipeServingCount(recipeServingCount);
 	} else {
 	   setTooltipOpenState(tooltipText, "open");
-	   if(ingredients && recipeServingCount) {
-		  defaultSummary.classList.add("hidden");
-		  orderSummary.classList.remove("hidden");
-		  removeTblBody(orderSummaryTblBody);
-		  createTblBody(orderSummaryTblBody, tblRowValsArr);
-	   } else {
+	   if(showDefault) {
 		  defaultSummary.classList.remove("hidden");
 		  orderSummary.classList.add("hidden");
+	   } else {
+		  defaultSummary.classList.add("hidden");
+		  orderSummary.classList.remove("hidden");
+		  if(showTblView) {
+			 removeTblBody(orderSummaryTblBody);
+			 createTblBody(orderSummaryTblBody, tblRowValsArr);
+		  } else {
+		  }
 	   }
 	}
     totalQty = calcTotals(tblRowValsArr, "qty");
     totalPrice = calcTotals(tblRowValsArr, "price");
     createTblFoot(orderSummaryTblFoot, totalQty, priceFormatter.format(totalPrice));
+});
+
+listViewToggleBtn.addEventListener("click", function() {
+    if(this.classList.contains("pressed")) this.classList.remove("pressed");
+    else this.classList.add("pressed");
+
+    showTblView = !showTblView;
+
+    if(showTblView) {
+	   orderSummaryTbl.classList.remove("hidden");
+	   orderSummaryList.classList.add("hidden");
+	} else {
+	   orderSummaryTbl.classList.add("hidden");
+	   orderSummaryList.classList.remove("hidden");
+	}
 });
 
 orderSummaryBtnGroupClearBtn.addEventListener("click", function() {
@@ -44,6 +64,8 @@ orderSummaryBtnGroupClearBtn.addEventListener("click", function() {
 
     tblRowValsArr = [];
 	removeTblBody(orderSummaryTblBody);
+
+    showDefault = true;
 });
 orderSummaryBtnGroupCheckoutBtn.addEventListener("click", doCheckout);
 
@@ -76,6 +98,8 @@ recipeResultControlsBtnGroupMinus.addEventListener("click", () => {
 	  setItemsCount(cartItemsCount, --recipeServingCount, cartItemsCountTotal);
 
 	  tblRowValsArr = setOrderVals(tblRowValsArr, ingredients, recipeServingCount, "minus");
+   } else {
+	  showDefault = true;
    }
 });
 recipeResultControlsBtnGroupPlus.addEventListener("click", () => {
@@ -83,4 +107,8 @@ recipeResultControlsBtnGroupPlus.addEventListener("click", () => {
    setItemsCount(cartItemsCount, ++recipeServingCount, cartItemsCountTotal);
 
    tblRowValsArr = setOrderVals(tblRowValsArr, ingredients, recipeServingCount, "plus");
+
+   if(recipeServingCount > 0) {
+	   showDefault = false;
+   }
 });

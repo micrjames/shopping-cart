@@ -14,7 +14,6 @@
 	  transform: translateX(-50%);
 	  background-color: $background-color;
 	  color: $text-color;
-	  text-align: center;
 	  padding: 10px;
 	  white-space: nowrap;
 	  border-radius: 5px;
@@ -24,6 +23,7 @@
 	  transition: opacity 1s;
 
 	  #default-summary {
+			text-align: center;
 			i {
 			   margin: 5rem 0;
 			   font-size: 15rem;
@@ -46,27 +46,40 @@
 			}
 	  }
 	  #order-summary {
-			@extend %tooltip-text-content;
-			#order-summary-btn-group {
-			display: flex;
-			justify-content: space-around;
-			.btn {
-				@include button(1.2rem, 0.65rem 1.2rem, 0);
-				@include box-shadow(6px, 2px, 9px, 2px, rgba(0, 0, 0, 0.6), false); 
-				@include transition-ease;
-				&:active {
-					 box-shadow: none;
-				}
-
-				&:disabled {
-					box-shadow: none;
-					opacity: 0.2;
-				}
-				i {
-				   color: white;
+		    #list-view-toggle-btn {
+			    position: relative;
+				left: 40%;
+				@include button(1rem, 0.5rem 1rem, 0);
+				border: 3px solid black;
+				background-color: transparent;
+				.pressed {
+				   background-color: black;
+				   i {
+					  color: white;
+				   }
 				}
 			}
-		 }
+			@extend %tooltip-text-content;
+			#order-summary-btn-group {
+			   display: flex;
+			   justify-content: space-around;
+			   .btn {
+				   @include button(1.2rem, 0.65rem 1.2rem, 0);
+				   @include box-shadow(6px, 2px, 9px, 2px, rgba(0, 0, 0, 0.6), false); 
+				   @include transition-ease;
+				   &:active {
+						box-shadow: none;
+				   }
+
+				   &:disabled {
+					   box-shadow: none;
+					   opacity: 0.2;
+				   }
+				   i {
+					  color: white;
+				   }
+			   }
+		  }
 	  }
 	  .hidden {
 		 display: none;

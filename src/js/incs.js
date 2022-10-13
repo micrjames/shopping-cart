@@ -7,6 +7,8 @@ const cartItemsCount = cartItems.children.namedItem("cart-items-count");
 const tooltipText = cartItems.children.namedItem("tooltip-text");
 const defaultSummary = tooltipText.children.namedItem("default-summary");
 const orderSummary = tooltipText.children.namedItem("order-summary");
+const listViewToggleBtn = orderSummary.children.namedItem("list-view-toggle-btn");
+const orderSummaryList = orderSummary.children.namedItem("order-summary-list");
 const orderSummaryTbl = orderSummary.children.namedItem("order-summary-tbl");
 const orderSummaryTblBody = orderSummaryTbl.children.namedItem("order-summary-tbl-body");
 const orderSummaryTblFoot = orderSummaryTbl.children.namedItem("order-summary-tbl-foot");
@@ -39,4 +41,4 @@ const priceFormatter = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 2
 });
 
-export { getRecipe, getRecipes, recipeListing, recipeChoices, orderSummaryBtnGroupClearBtn, orderSummaryBtnGroupCheckoutBtn, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, recipeResultControlsBtnGroupCount, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter, defaultSummary, orderSummary };
+export { getRecipe, getRecipes, recipeListing, recipeChoices, orderSummaryBtnGroupClearBtn, orderSummaryBtnGroupCheckoutBtn, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, recipeResultControlsBtnGroupCount, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter, defaultSummary, orderSummary, listViewToggleBtn, orderSummaryList, orderSummaryTbl };
