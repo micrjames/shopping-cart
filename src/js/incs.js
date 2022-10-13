@@ -9,6 +9,10 @@ const orderSummaryTbl = tooltipText.children.namedItem("order-summary-tbl");
 const orderSummaryTblBody = orderSummaryTbl.children.namedItem("order-summary-tbl-body");
 const orderSummaryTblFoot = orderSummaryTbl.children.namedItem("order-summary-tbl-foot");
 
+const orderSummaryBtnGroup = tooltipText.children.namedItem("order-summary-btn-group");
+const orderSummaryBtnGroupClearBtn = orderSummaryBtnGroup.children.namedItem("order-summary-btn-group-clear-btn");
+const orderSummaryBtnGroupCheckoutBtn = orderSummaryBtnGroup.children.namedItem("order-summary-btn-group-checkout-btn");
+
 const main = body.children.namedItem("main");
 const recipeChoices = main.children.namedItem("recipe-choice-btn-group");
 const recipeListing = main.children.namedItem("main-section-listing");
@@ -33,4 +37,4 @@ const priceFormatter = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 2
 });
 
-export { getRecipe, getRecipes, recipeListing, recipeChoices, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, recipeResultControlsBtnGroupCount, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter };
+export { getRecipe, getRecipes, recipeListing, recipeChoices, orderSummaryBtnGroupClearBtn, orderSummaryBtnGroupCheckoutBtn, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, recipeResultControlsBtnGroupCount, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter };

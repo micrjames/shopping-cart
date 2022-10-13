@@ -1,9 +1,9 @@
-import { recipeListing, recipeChoices, getRecipes, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter } from "./incs.js";
+import { recipeListing, recipeChoices, getRecipes, orderSummaryBtnGroupClearBtn, orderSummaryBtnGroupCheckoutBtn, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter } from "./incs.js";
 import { createTblBody, removeTblBody, createTblFoot } from "./orderSummary.js";
 import { resetRecipeResult, setRecipeResult } from "./recipeResults.js";
 import { setRecipeServingCount } from "./recipeResult.js";
 import { createBtn } from "./DOMutils.js";
-import { calcTotals, setTooltipOpenState, getIngredients, setItemsCount, setOrderVals } from "./utils.js";
+import { doClear, doCheckout, calcTotals, setTooltipOpenState, getIngredients, setItemsCount, setOrderVals } from "./utils.js";
 
 let whichRecipe;
 let recipeServingCount = 0;
@@ -33,6 +33,9 @@ cartItems.addEventListener("click", function() {
     totalPrice = calcTotals(tblRowValsArr, "price");
     createTblFoot(orderSummaryTblFoot, totalQty, priceFormatter.format(totalPrice));
 });
+
+orderSummaryBtnGroupClearBtn.addEventListener("click", doClear);
+orderSummaryBtnGroupCheckoutBtn.addEventListener("click", doCheckout);
 
 const recipesPromise = getRecipes();
 recipesPromise.then(res => {

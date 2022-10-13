@@ -1,6 +1,12 @@
 import { setRecipeServingCount } from "./recipeResult.js";
 import { setRandomPrice } from "./setRandomPrice.js";
 
+const doClear = function() {
+};
+
+const doCheckout = function() {
+};
+
 const setOrderVals = function(tblRowValsArr, ingredients, recipeServingCount, op) {
     let matchIndex = -1;
     console.log(tblRowValsArr);
@@ -63,4 +69,4 @@ const setItemsCount = function(cartItemsCount, servingCount, itemsCount = servin
    cartItemsCount.textContent = itemsCount;
 };
 
-export { calcTotals, setOrderVals, setTooltipOpenState, getIngredient, getIngredients, setItemsCount };
+export { calcTotals, setOrderVals, setTooltipOpenState, getIngredient, getIngredients, setItemsCount, doClear, doCheckout };
