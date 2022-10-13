@@ -16,6 +16,13 @@ const createListItem = function(strs) {
     return li;
 };
 
+const createListItemEl = function(el) {
+    const li = document.createElement("li");
+    li.appendChild(el);
+    
+    return li;
+};
+
 const createBtn = function(id, btnClassName, iconClassName = "") {
     const btn = document.createElement("button");
     btn.id = id;
@@ -59,4 +66,4 @@ const removeChildren = function(context) {
 	}
 };
 
-export { createSpan, createListItem, createBtn, createBtnGroup, removeChildren }; 
+export { addIcon, createSpan, createListItem, createListItemEl, createBtn, createBtnGroup, removeChildren }; 

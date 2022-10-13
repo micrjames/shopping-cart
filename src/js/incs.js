@@ -27,7 +27,6 @@ const recipeResultControlsBtnGroupMinus = recipeResultControlsBtnGroup.children.
 const recipeResultControlsBtnGroupCount = recipeResultControlsBtnGroup.children.namedItem("recipe-result-controls-btn-group-count");
 const recipeResultControlsBtnGroupPlus = recipeResultControlsBtnGroup.children.namedItem("recipe-result-controls-btn-group-plus");
 
-
 const getRecipe = async function(mealId) {
     return await fetchData(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`); 
 };

@@ -1,5 +1,6 @@
 import { recipeListing, recipeChoices, getRecipes, orderSummaryBtnGroupClearBtn, orderSummaryBtnGroupCheckoutBtn, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter, orderSummary, defaultSummary, listViewToggleBtn, orderSummaryList, orderSummaryTbl } from "./incs.js";
 import { createTblBody, removeTblBody, createTblFoot } from "./orderSummaryTbl.js";
+import { createOrderList } from "./orderSummaryList.js";
 import { resetRecipeResult, setRecipeResult } from "./recipeResults.js";
 import { setRecipeServingCount } from "./recipeResult.js";
 import { createBtn } from "./DOMutils.js";
@@ -21,10 +22,14 @@ setItemsCount(cartItemsCount, cartItemsCountTotal, recipeServingCount);
 cartItems.addEventListener("click", function() {
     if(tooltipText.style.visibility == "visible") {
 	   setTooltipOpenState(tooltipText, "closed");
+	   recipeResultControlsBtnGroupMinus.disabled = false;
+	   recipeResultControlsBtnGroupPlus.disabled = false;
 	   recipeServingCount = 0;
 	   setRecipeServingCount(recipeServingCount);
 	} else {
 	   setTooltipOpenState(tooltipText, "open");
+	   recipeResultControlsBtnGroupMinus.disabled = true;
+	   recipeResultControlsBtnGroupPlus.disabled = true;
 	   if(showDefault) {
 		  defaultSummary.classList.remove("hidden");
 		  orderSummary.classList.add("hidden");
@@ -35,6 +40,8 @@ cartItems.addEventListener("click", function() {
 			 removeTblBody(orderSummaryTblBody);
 			 createTblBody(orderSummaryTblBody, tblRowValsArr);
 		  } else {
+			 const orderSummaryListItem = createOrderList();
+			 orderSummaryList.appendChild(orderSummaryListItem);
 		  }
 	   }
 	}
@@ -63,7 +70,7 @@ orderSummaryBtnGroupClearBtn.addEventListener("click", function() {
     setItemsCount(cartItemsCount, recipeServingCount);
 
     tblRowValsArr = [];
-	removeTblBody(orderSummaryTblBody);
+	if(showTblView) removeTblBody(orderSummaryTblBody);
 
     showDefault = true;
 });
