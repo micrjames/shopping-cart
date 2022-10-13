@@ -1,4 +1,4 @@
-import { recipeListing, recipeChoices, getRecipes, orderSummaryBtnGroupClearBtn, orderSummaryBtnGroupCheckoutBtn, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter } from "./incs.js";
+import { recipeListing, recipeChoices, getRecipes, orderSummaryBtnGroupClearBtn, orderSummaryBtnGroupCheckoutBtn, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter, orderSummary, defaultSummary } from "./incs.js";
 import { createTblBody, removeTblBody, createTblFoot } from "./orderSummary.js";
 import { resetRecipeResult, setRecipeResult } from "./recipeResults.js";
 import { setRecipeServingCount } from "./recipeResult.js";
@@ -24,7 +24,8 @@ cartItems.addEventListener("click", function() {
 	} else {
 	   setTooltipOpenState(tooltipText, "open");
 	   if(ingredients && recipeServingCount) {
-		  console.log(tblRowValsArr);
+		  defaultSummary.classList.add("hidden");
+		  orderSummary.classList.remove("hidden");
 		  removeTblBody(orderSummaryTblBody);
 		  createTblBody(orderSummaryTblBody, tblRowValsArr);
 	   }

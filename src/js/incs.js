@@ -5,11 +5,13 @@ const hdr = body.children.namedItem("hdr-bar");
 const cartItems = hdr.children.namedItem("cart-items");
 const cartItemsCount = cartItems.children.namedItem("cart-items-count");
 const tooltipText = cartItems.children.namedItem("tooltip-text");
-const orderSummaryTbl = tooltipText.children.namedItem("order-summary-tbl");
+const defaultSummary = tooltipText.children.namedItem("default-summary");
+const orderSummary = tooltipText.children.namedItem("order-summary");
+const orderSummaryTbl = orderSummary.children.namedItem("order-summary-tbl");
 const orderSummaryTblBody = orderSummaryTbl.children.namedItem("order-summary-tbl-body");
 const orderSummaryTblFoot = orderSummaryTbl.children.namedItem("order-summary-tbl-foot");
 
-const orderSummaryBtnGroup = tooltipText.children.namedItem("order-summary-btn-group");
+const orderSummaryBtnGroup = orderSummary.children.namedItem("order-summary-btn-group");
 const orderSummaryBtnGroupClearBtn = orderSummaryBtnGroup.children.namedItem("order-summary-btn-group-clear-btn");
 const orderSummaryBtnGroupCheckoutBtn = orderSummaryBtnGroup.children.namedItem("order-summary-btn-group-checkout-btn");
 
@@ -37,4 +39,4 @@ const priceFormatter = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 2
 });
 
-export { getRecipe, getRecipes, recipeListing, recipeChoices, orderSummaryBtnGroupClearBtn, orderSummaryBtnGroupCheckoutBtn, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, recipeResultControlsBtnGroupCount, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter };
+export { getRecipe, getRecipes, recipeListing, recipeChoices, orderSummaryBtnGroupClearBtn, orderSummaryBtnGroupCheckoutBtn, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, recipeResultControlsBtnGroupCount, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter, defaultSummary, orderSummary };
