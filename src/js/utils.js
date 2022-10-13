@@ -1,9 +1,6 @@
 import { setRecipeServingCount } from "./recipeResult.js";
 import { setRandomPrice } from "./setRandomPrice.js";
 
-const doClear = function() {
-};
-
 const doCheckout = function() {
 };
 
@@ -69,4 +66,4 @@ const setItemsCount = function(cartItemsCount, servingCount, itemsCount = servin
    cartItemsCount.textContent = itemsCount;
 };
 
-export { calcTotals, setOrderVals, setTooltipOpenState, getIngredient, getIngredients, setItemsCount, doClear, doCheckout };
+export { calcTotals, setOrderVals, setTooltipOpenState, getIngredient, getIngredients, setItemsCount, doCheckout };

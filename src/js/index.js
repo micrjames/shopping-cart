@@ -3,7 +3,7 @@ import { createTblBody, removeTblBody, createTblFoot } from "./orderSummary.js";
 import { resetRecipeResult, setRecipeResult } from "./recipeResults.js";
 import { setRecipeServingCount } from "./recipeResult.js";
 import { createBtn } from "./DOMutils.js";
-import { doClear, doCheckout, calcTotals, setTooltipOpenState, getIngredients, setItemsCount, setOrderVals } from "./utils.js";
+import { doCheckout, calcTotals, setTooltipOpenState, getIngredients, setItemsCount, setOrderVals } from "./utils.js";
 
 let whichRecipe;
 let recipeServingCount = 0;
@@ -28,6 +28,9 @@ cartItems.addEventListener("click", function() {
 		  orderSummary.classList.remove("hidden");
 		  removeTblBody(orderSummaryTblBody);
 		  createTblBody(orderSummaryTblBody, tblRowValsArr);
+	   } else {
+		  defaultSummary.classList.remove("hidden");
+		  orderSummary.classList.add("hidden");
 	   }
 	}
     totalQty = calcTotals(tblRowValsArr, "qty");
@@ -35,7 +38,13 @@ cartItems.addEventListener("click", function() {
     createTblFoot(orderSummaryTblFoot, totalQty, priceFormatter.format(totalPrice));
 });
 
-orderSummaryBtnGroupClearBtn.addEventListener("click", doClear);
+orderSummaryBtnGroupClearBtn.addEventListener("click", function() {
+    recipeServingCount = 0;
+    setItemsCount(cartItemsCount, recipeServingCount);
+
+    tblRowValsArr = [];
+	removeTblBody(orderSummaryTblBody);
+});
 orderSummaryBtnGroupCheckoutBtn.addEventListener("click", doCheckout);
 
 const recipesPromise = getRecipes();
