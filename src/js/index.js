@@ -3,7 +3,7 @@ import { createTblBody, removeTblBody, createTblFoot } from "./orderSummaryTbl.j
 import { createOrderList } from "./orderSummaryList.js";
 import { resetRecipeResult, setRecipeResult } from "./recipeResults.js";
 import { setRecipeServingCount } from "./recipeResult.js";
-import { createBtn } from "./DOMutils.js";
+import { createBtn, removeChildren } from "./DOMutils.js";
 import { doCheckout, calcTotals, setTooltipOpenState, getIngredients, setItemsCount, setOrderVals } from "./utils.js";
 
 let whichRecipe;
@@ -16,6 +16,13 @@ let tblRowValsArr = [];
 let ingredients;
 let showDefault = true;
 let showTblView = true;
+
+let orderListValsArr = [{
+    "name": "Recipe Name",
+    "ingredients": ["egg", "bread", "butter"],
+    "qty": 1,
+    "totals": 5.35
+}];
 
 setItemsCount(cartItemsCount, cartItemsCountTotal, recipeServingCount); 
 
@@ -40,8 +47,18 @@ cartItems.addEventListener("click", function() {
 			 removeTblBody(orderSummaryTblBody);
 			 createTblBody(orderSummaryTblBody, tblRowValsArr);
 		  } else {
-			 const orderSummaryListItem = createOrderList();
-			 orderSummaryList.appendChild(orderSummaryListItem);
+			 createOrderList(orderSummaryList, orderListValsArr);
+			 const orderListDeleteControllers = document.querySelectorAll(".order-list-delete");
+			 orderListDeleteControllers.forEach(orderListDeleteController => {
+				 orderListDeleteController.addEventListener("click", function() {
+					 const orderListItemHdr = this.parentElement;
+					 const orderListItem = orderListItemHdr.parentElement;
+
+					 const orderList = orderListItem.parentElement;
+					 removeChildren(orderList);
+					 orderListValsArr = [];
+				 });
+			 });
 		  }
 	   }
 	}
