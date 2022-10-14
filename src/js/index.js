@@ -1,10 +1,10 @@
 import { recipeListing, recipeChoices, getRecipes, orderSummaryBtnGroupClearBtn, orderSummaryBtnGroupCheckoutBtn, recipeResultControlsBtnGroupMinus, recipeResultControlsBtnGroupPlus, cartItems, cartItemsCount, tooltipText, orderSummaryTblBody, orderSummaryTblFoot, priceFormatter, orderSummary, defaultSummary, listViewToggleBtn, orderSummaryList, orderSummaryTbl } from "./incs.js";
 import { createTblBody, removeTblBody, createTblFoot } from "./orderSummaryTbl.js";
-import { createOrderList } from "./orderSummaryList.js";
+import { createOrderList, removeOrderList } from "./orderSummaryList.js";
 import { resetRecipeResult, setRecipeResult } from "./recipeResults.js";
 import { setRecipeServingCount } from "./recipeResult.js";
 import { createBtn, removeChildren } from "./DOMutils.js";
-import { doCheckout, calcTotals, setTooltipOpenState, getIngredients, setItemsCount, setOrderVals } from "./utils.js";
+import { doCheckout, calcTblTotals, setTooltipOpenState, getIngredients, setItemsCount, setOrderTblVals, setOrderListVals } from "./utils.js";
 
 let whichRecipe;
 let recipeServingCount = 0;
@@ -13,16 +13,10 @@ let cartItemsCountTotal = 0;
 let totalQty = 0;
 let totalPrice = 0;
 let tblRowValsArr = [];
+let orderListValsArr = [];
 let ingredients;
 let showDefault = true;
 let showTblView = true;
-
-let orderListValsArr = [{
-    "name": "Recipe Name",
-    "ingredients": ["egg", "bread", "butter"],
-    "qty": 1,
-    "totals": 5.35
-}];
 
 setItemsCount(cartItemsCount, cartItemsCountTotal, recipeServingCount); 
 
@@ -47,23 +41,24 @@ cartItems.addEventListener("click", function() {
 			 removeTblBody(orderSummaryTblBody);
 			 createTblBody(orderSummaryTblBody, tblRowValsArr);
 		  } else {
+			 removeOrderList(orderSummaryList);
 			 createOrderList(orderSummaryList, orderListValsArr);
 			 const orderListDeleteControllers = document.querySelectorAll(".order-list-delete");
-			 orderListDeleteControllers.forEach(orderListDeleteController => {
+			 orderListDeleteControllers.forEach((orderListDeleteController, index) => {
 				 orderListDeleteController.addEventListener("click", function() {
 					 const orderListItemHdr = this.parentElement;
 					 const orderListItem = orderListItemHdr.parentElement;
 
 					 const orderList = orderListItem.parentElement;
 					 removeChildren(orderList);
-					 orderListValsArr = [];
+					 orderListValsArr.splice(index, 1);
 				 });
 			 });
 		  }
 	   }
 	}
-    totalQty = calcTotals(tblRowValsArr, "qty");
-    totalPrice = calcTotals(tblRowValsArr, "price");
+    totalQty = calcTblTotals(tblRowValsArr, "qty");
+    totalPrice = calcTblTotals(tblRowValsArr, "price");
     createTblFoot(orderSummaryTblFoot, totalQty, priceFormatter.format(totalPrice));
 });
 
@@ -106,6 +101,7 @@ recipesPromise.then(res => {
 	  choiceBtn.textContent = `${index}`;
 	  choiceBtn.addEventListener("click", () => {
 		  whichRecipe = recipe;
+		  ingredients = getIngredients(whichRecipe);
 		  numIngredients = ingredients.length;
 		  resetRecipeResult(recipeListing);
 		  setRecipeResult(recipeListing, whichRecipe);
@@ -121,7 +117,8 @@ recipeResultControlsBtnGroupMinus.addEventListener("click", () => {
 	  cartItemsCountTotal -= numIngredients;
 	  setItemsCount(cartItemsCount, --recipeServingCount, cartItemsCountTotal);
 
-	  tblRowValsArr = setOrderVals(tblRowValsArr, ingredients, recipeServingCount, "minus");
+	  tblRowValsArr = setOrderTblVals(tblRowValsArr, ingredients, recipeServingCount, "minus");
+	  orderListValsArr = setOrderListVals(orderListValsArr, recipe, recipeServingCount, "minus");
    } else {
 	  showDefault = true;
    }
@@ -130,7 +127,8 @@ recipeResultControlsBtnGroupPlus.addEventListener("click", () => {
    cartItemsCountTotal += numIngredients;
    setItemsCount(cartItemsCount, ++recipeServingCount, cartItemsCountTotal);
 
-   tblRowValsArr = setOrderVals(tblRowValsArr, ingredients, recipeServingCount, "plus");
+   tblRowValsArr = setOrderTblVals(tblRowValsArr, ingredients, recipeServingCount, "plus");
+   orderListValsArr = setOrderListVals(orderListValsArr, whichRecipe, recipeServingCount, "plus");
 
    if(recipeServingCount > 0) {
 	   showDefault = false;

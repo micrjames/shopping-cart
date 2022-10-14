@@ -4,9 +4,27 @@ import { setRandomPrice } from "./setRandomPrice.js";
 const doCheckout = function() {
 };
 
-const setOrderVals = function(tblRowValsArr, ingredients, recipeServingCount, op) {
+const setOrderListVals = function(orderListValsArr, recipe, recipeServingCount, op) {
+   const listRowVals = {};
+
+   listRowVals.name = recipe.strMeal;
+   listRowVals.ingredients = getIngredients(recipe);
+   listRowVals.qty = recipeServingCount;
+   
+   let totalsArr = [];
+   listRowVals.ingredients.forEach(ingredient => {
+	  totalsArr = [...totalsArr, +setRandomPrice()];
+	  listRowVals.totals = totalsArr.reduce((sum, value) => sum + value);
+   });
+   listRowVals.totals = +listRowVals.totals;
+
+   orderListValsArr = [...orderListValsArr, listRowVals];
+
+   return orderListValsArr;
+};
+
+const setOrderTblVals = function(tblRowValsArr, ingredients, recipeServingCount, op) {
     let matchIndex = -1;
-    console.log(tblRowValsArr);
 
     ingredients.forEach(ingredient => {
 		const tblRowVals =  {};                                                                      
@@ -15,10 +33,7 @@ const setOrderVals = function(tblRowValsArr, ingredients, recipeServingCount, op
 		    if(op == "plus") tblRowValsArr[matchIndex].qty += recipeServingCount;
 		    else if(op == "minus") tblRowValsArr[matchIndex].qty -= recipeServingCount;
 		} else {
-		    if(op == "plus") 
-			    tblRowVals.qty = recipeServingCount;
-		    else if(op == "minus") 
-			    tblRowVals.qty = recipeServingCount;
+			tblRowVals.qty = recipeServingCount;
 		    tblRowVals.item = ingredient;
 		    tblRowVals.price = setRandomPrice();
 
@@ -29,7 +44,7 @@ const setOrderVals = function(tblRowValsArr, ingredients, recipeServingCount, op
     return tblRowValsArr;
 };
 
-const calcTotals = function(tblRowValsArr, whichTotal) {
+const calcTblTotals = function(tblRowValsArr, whichTotal) {
     let arr = [];
     if(whichTotal == "qty") { 
 	   arr = tblRowValsArr.map(tblRowVals => tblRowVals.qty);
@@ -66,4 +81,4 @@ const setItemsCount = function(cartItemsCount, servingCount, itemsCount = servin
    cartItemsCount.textContent = itemsCount;
 };
 
-export { calcTotals, setOrderVals, setTooltipOpenState, getIngredient, getIngredients, setItemsCount, doCheckout };
+export { calcTblTotals, setOrderTblVals, setOrderListVals, setTooltipOpenState, getIngredient, getIngredients, setItemsCount, doCheckout };

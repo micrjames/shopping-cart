@@ -1,10 +1,14 @@
-import { createListItemEl, createSpan, addIcon } from "./DOMutils.js";
+import { removeChildren, createListItemEl, createSpan, addIcon } from "./DOMutils.js";
 
 const createOrderList = function(orderList, orderListValsArr) {
     orderListValsArr.forEach(orderListVals => {
 	    const orderListItem = createOrderListItem(orderListVals);
         orderList.appendChild(orderListItem);
 	}); 
+};
+
+const removeOrderList = function(orderList) {
+    removeChildren(orderList);
 };
 
 const createOrderListItem = function(orderListVals) {
@@ -62,4 +66,4 @@ const createOrderListFoot = function(qty, totals) {
     return ul;
 };
 
-export { createOrderList };
+export { createOrderList, removeOrderList };
