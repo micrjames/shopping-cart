@@ -1,5 +1,5 @@
 @mixin ftr-bar($bg-color, $link-color: blue) {
-   position: absolute;
+   position: sticky;
    bottom: 0;
  
    width: 100%;
@@ -7,9 +7,12 @@
 
    background-color: $bg-color;
 
+   display: flex;
+   justify-content: flex-end;
+
    span#link-text {
+	   margin: 0 1.5rem;
        font-size: 1.15rem;
-       margin-left: 90%;
        color: $link-color;
        text-decoration: underline;
        cursor: pointer;

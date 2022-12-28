@@ -23,10 +23,10 @@ const createListItemEl = function(el) {
     return li;
 };
 
-const createBtn = function(id, btnClassName, iconClassName = "") {
+const createBtn = function(id, btnClassName="", iconClassName = "") {
     const btn = document.createElement("button");
     btn.id = id;
-    btn.setAttribute("class", btnClassName);
+    if(btnClassName) btn.setAttribute("class", btnClassName);
     if(iconClassName) addIcon(btn, iconClassName);
 
     return btn;

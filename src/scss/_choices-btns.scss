@@ -1,7 +1,8 @@
-%choices-btns {
-   width: 74%;
-   margin: 0 auto;
+@import 'utils/button', 'utils/utils';
 
+%choices-btns {
+   display: flex;
+   justify-content: center;
    .btn {
 	   @include button(1rem, 0.5rem 0.75rem, 0);
 	   background-color: gray;

@@ -1,20 +1,17 @@
-@use 'sass:list';
-@import 'utils/config', 'hdr-bar', 'ftr-bar', 'main-listing', 'utils/button', 'utils/utils', 'choices-btns';
-$primary-color: lightgray;
+@import 'utils/config', 'hdr-bar', 'ftr-bar', 'choices-btns', 'main-listing';
 
+$primary-color: lightgray;
 #hdr-bar {
-   @include hdr-bar($primary-color);
+    @include hdr-bar($primary-color);
 }
 main {
-   width: 100vw;
-   height: 90vh;
-   #recipe-choice-btn-group {
-	  @extend %choices-btns;
-   }
-   #main-section-listing {
-	  @include main-listing($primary-color);
-   }
+	#recipe-choice-btn-group {
+	    @extend %choices-btns;
+	}
+	#main-section-listing {
+	    @include main-listing($primary-color);
+	}
 }
 #ftr-bar {
-   @include ftr-bar($primary-color);
+    @include ftr-bar($primary-color);
 }

@@ -1,31 +1,29 @@
-@import "utils/button", "utils/utils";
-
 @mixin main-listing($bg-color) {
-   background-color: $bg-color;
+    background-color: $bg-color;
 
-   width: 100% - 2 * 15%;
-   height: 100% - 2 * 5%;
+	width: 100% - 2 * 15%;
+	height: 100% - 2 * 5%;
 
-   margin: 2% auto;
-   border-radius: 5px;
-   
-   overflow: scroll;
+	margin: 2% auto;
+	border-radius: 5px;
 
-   #recipe-result-figure {
-	  &-thumb {
-		 width: 100%;
-		 height: 350px;
-	  }
-	  &-title {
-		 position: relative;
-		 bottom: 325px;
-		 background-color: white;
-		 padding: 0.75rem 0;
-		 text-align: center;
-		 font-size: 1.5rem;
-	  }
-   }
-   #recipe-result-ingredients {
+	overflow: scroll;
+
+	#recipe-result-figure {
+	    &-thumb {
+		    width: 100%;
+			height: 350px;
+		}
+		&-title {
+		    position: relative;
+			bottom: 325px;
+			background-color: white;
+			padding: 0.75rem 0;
+			text-align: center;
+			font-size: 1.5rem;
+		}
+	}
+    #recipe-result-ingredients {
 	  &-title{
 		 text-align: center;
 		 margin-bottom: 1.5rem;
@@ -70,13 +68,17 @@
 	  }
    }
    #recipe-result-controls {
-	  width: 50%;
-	  margin: 1.5rem auto;
+	  width: 100%;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  margin: 0.95rem 0;
 	  &-preamble {
 		 font-size: 1.25rem;
 	  }
 	  &-btn-group {
-		 display: inline-block;
+		 display: inline-flex;
+		 align-items: center;
 		 .btn {
 			@include button(0.75rem, 0.75rem 1rem, 0 0.5rem);
 			@include box-shadow(6px, 2px, 9px, 2px, rgba(0, 0, 0, 0.6), false); 

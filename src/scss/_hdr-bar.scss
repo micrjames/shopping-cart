@@ -1,6 +1,8 @@
-@import "tooltip";
+// @import "tooltip";
 
 @mixin hdr-bar($bg-color, $icon-color: black) {
+   position: sticky;
+   top: 0;
    background-color: $bg-color;
    padding: 0.9rem 0;
  
@@ -22,6 +24,6 @@
 		  border-radius: 3px;
 		  font-size: 1.05rem;
 	  }
-	  @include tooltip(1rem, white, black);
+	  // @include tooltip(1rem, white, black);
    }
 }

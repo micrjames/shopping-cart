@@ -1,6 +1,4 @@
-import { createResultIngredientsList, createResultInstructionsList } from "./recipeResults.js";
-import { removeChildren } from "./DOMutils.js";
-import { recipeResultControlsBtnGroupCount } from "./incs.js";
+import { removeChildren, createSpan, createListItem } from "./DOMutils.js";
 
 const createTitle = function(figure, text) {
    const title = figure.children.namedItem("recipe-result-figure-title");
@@ -22,18 +20,31 @@ const createInstructions = function(instructions, data) {
    createResultInstructionsList(instructionsTextList, data);
 };
 
-const removeIngredients = function(ingredients) {
-   const ingredientsList = ingredients.children.namedItem("recipe-result-ingredients-list");
-   removeChildren(ingredientsList);
+const createResultIngredientsList = function(recipeResultIngredientsList, data) {                       
+    for(let i = 1; i <= 20; i++) {                                          
+        const ingredientsText = data[`strIngredient${i}`];
+        const ingredientsMeasure = data[`strMeasure${i}`];                                                
+        if(ingredientsText && ingredientsMeasure) {
+            const text = createSpan(ingredientsText);                                                   
+			const measure = createSpan(ingredientsMeasure);
+                             
+			const recipeResultIngredientsListItem = createListItem([text, measure]); 
+                             
+			recipeResultIngredientsList.appendChild(recipeResultIngredientsListItem);
+       }                      
+    }                         
+    return recipeResultIngredientsList;
+}; 
+const createResultInstructionsList = function(recipeInstructionsTextList, data) {
+    const instructionsText = data.strInstructions;                                                      
+    for(const instructionText of instructionsText.split(".")) {
+	   if(instructionText) {
+		   const recipeInstructionsTextSpan = createSpan(instructionText.trim());
+		   const recipeInstructionsTextListItem = createListItem([recipeInstructionsTextSpan]);
+
+		   recipeInstructionsTextList.appendChild(recipeInstructionsTextListItem);
+	   }
+    }
 };
 
-const removeInstructions = function(instructions) {
-   const instructionsTextList = instructions.children.namedItem("recipe-result-instructions-text-list");
-   removeChildren(instructionsTextList);
-};
-
-const setRecipeServingCount = function(count) {
-   recipeResultControlsBtnGroupCount.textContent = count; 
-};
-
-export { createTitle, createThumb, createIngredients, createInstructions, removeIngredients, removeInstructions, setRecipeServingCount };
+export { createTitle, createThumb, createIngredients, createInstructions };
