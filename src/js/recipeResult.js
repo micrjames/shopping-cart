@@ -47,4 +47,14 @@ const createResultInstructionsList = function(recipeInstructionsTextList, data) 
     }
 };
 
-export { createTitle, createThumb, createIngredients, createInstructions };
+const removeIngredients = function(ingredients) {
+   const ingredientsList = ingredients.children.namedItem("recipe-result-ingredients-list");
+   removeChildren(ingredientsList);
+};
+
+const removeInstructions = function(instructions) {
+   const instructionsTextList = instructions.children.namedItem("recipe-result-instructions-text-list");
+   removeChildren(instructionsTextList);
+};
+
+export { createTitle, createThumb, createIngredients, createInstructions, removeIngredients, removeInstructions };

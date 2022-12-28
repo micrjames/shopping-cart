@@ -1,4 +1,4 @@
-import { createTitle, createThumb, createIngredients, createInstructions } from "./recipeResult.js";
+import { createTitle, createThumb, createIngredients, createInstructions, removeIngredients, removeInstructions } from "./recipeResult.js";
 
 const setRecipeResult = function(recipeResults, recipe) {
     createTitle(recipeResults.figure, recipe.strMeal);
@@ -7,4 +7,12 @@ const setRecipeResult = function(recipeResults, recipe) {
     createInstructions(recipeResults.instructions, recipe);                                             
 }; 
 
-export { setRecipeResult };
+const resetRecipeResult = function(recipeResults) {
+    createTitle(recipeResults.figure, null);
+    createThumb(recipeResults.figure, null);
+
+    removeIngredients(recipeResults.ingredients);
+    removeInstructions(recipeResults.instructions);
+};
+
+export { setRecipeResult, resetRecipeResult };
