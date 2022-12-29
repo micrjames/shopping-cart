@@ -1,8 +1,44 @@
-@import 'utils/config', 'hdr-bar', 'ftr-bar', 'choices-btns', 'main-listing';
+@import 'utils/config', 'hdr-bar', 'ftr-bar', 'choices-btns', 'main-listing', 'tooltip';
 
 $primary-color: lightgray;
 #hdr-bar {
     @include hdr-bar($primary-color);
+	.tooltip {
+	    margin: 0.5rem 2rem;
+		cursor: pointer;
+	    @include tooltip(1rem, white, black);
+
+		&-content {
+		   right: 0;
+		   width: 450px;
+		   height: 625px;
+		   top: 120%;  
+		   left: -380px;
+		   #default-summary {
+			   text-align: center;
+			   i {
+				  margin: 5rem 0;
+				  font-size: 15rem;
+				  color: gray;
+				  opacity: 0.5;
+			   }
+			   p {
+				  font-size: 2rem;
+				  font-weight: bolder;
+				  color: red;
+
+				  &:last-child {
+					 color: black;
+					 font-size: 1.2rem;
+
+					 i {
+						font-size: 1.5rem;
+					 }
+				  }
+			   }
+		   }
+		}
+	}
 }
 main {
 	#recipe-choice-btn-group {

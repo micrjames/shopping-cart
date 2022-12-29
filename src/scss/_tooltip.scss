@@ -1,0 +1,30 @@
+@import "utils/utils";
+
+@mixin tooltip($font-size, $background-color, $text-color) {
+   position: relative;
+   &-content {
+	  @include box-shadow(0, 3px, 10px, 0, rgb(0 0 0 / 0.2), false);
+	  font-size: $font-size;
+	  background-color: $background-color;
+	  color: $text-color;
+	  text-align: center;
+	  padding: 10px;
+	  white-space: nowrap;
+	  border-radius: 5px;
+	  position: absolute;
+	  &::after {
+		 content: "";
+		 position: absolute;
+	   	 bottom: 100%;
+		 border-color: transparent transparent $background-color transparent;
+		 left: 90%;
+		 transform: translateX(-90%);
+		 
+		 border-width: 10px;
+		 border-style: solid;
+	  }  
+	  &.hidden {
+		  display: none;
+	  }
+   }
+}
