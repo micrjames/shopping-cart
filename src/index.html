@@ -12,15 +12,47 @@
 	  <header id="hdr-bar">
 		 <div id="cart-items" class="tooltip">                                           
 			<i id="shopping-cart-trigger" class="fa-solid fa-cart-shopping"></i>
-			<span id="cart-items-count">0</span>
+			<span id="cart-items-count"></span>
 			<div id="tooltip-content" class="tooltip-content">
-			   <section id="default-summary">                                                             
+			   <section id="default-summary"> 
 				  <i class="fa-solid fa-box-open"></i>
 				  <p>No orders found.</p>
 				  <p>
 					 <i class="fa-solid fa-magnifying-glass"></i>
 					 <span>Looks like you haven&apos;t made a selection yet.</span>
 				  </p>
+			   </section>
+			   <section id="order-summary">                                                
+				  <button id="list-view-toggle-btn">
+					 <i class="fa-solid fa-table-list"></i>
+				  </button>
+				  <ul id="order-summary-list" class="hidden"></ul>
+				  <table id="order-summary-tbl">
+					 <caption>Order Summary</caption>
+					 <thead>
+						<tr>
+						   <th>Item</th>
+						   <th>Qty</th>
+						   <th>Price</th>
+						</tr>
+					 </thead>
+					 <tbody id="order-summary-tbl-body"></tbody>
+					 <tfoot id="order-summary-tbl-foot">
+						<tr id="order-summary-tbl-foot-row">
+						   <th scope="row" colspan="1">Total</th>
+						   <td id="order-summary-tbl-foot-row-qty" colspan="1"></td>
+						   <td id="order-summary-tbl-foot-row-total" colspan="1"></td>
+						</tr>
+					 </tfoot>
+				  </table>
+				  <div id="order-summary-btn-group">
+					 <button id="order-summary-btn-group-clear-btn" class="btn">
+						<i class="fa-solid fa-trash"></i>
+					 </button>
+					 <button id="order-summary-btn-group-checkout-btn" class="btn">
+						<i class="fa-solid fa-cash-register"></i>
+					 </button>
+				  </div>
 			   </section>
 			</div>
 		 </div>                                                          

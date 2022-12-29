@@ -23,6 +23,10 @@
 		  padding: 0.10rem 0.5rem;
 		  border-radius: 3px;
 		  font-size: 1.05rem;
+
+		  &.hidden {
+			  display: none;
+		  }
 	  }
 	  // @include tooltip(1rem, white, black);
    }

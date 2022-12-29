@@ -32,6 +32,44 @@ main #recipe-choice-btn-group .btn:active {
   box-shadow: none;
 }
 
+#hdr-bar .tooltip-content #order-summary {
+  text-align: center;
+}
+#hdr-bar .tooltip-content #order-summary table {
+  width: 100%;
+  font-size: 1.2rem;
+  border-collapse: collapse;
+}
+#hdr-bar .tooltip-content #order-summary table caption {
+  font-size: 1.5rem;
+  padding: 1.25rem;
+}
+#hdr-bar .tooltip-content #order-summary table thead tr {
+  border-bottom: 1px solid #ddd;
+}
+#hdr-bar .tooltip-content #order-summary table thead tr th {
+  padding: 0.75rem 0;
+}
+#hdr-bar .tooltip-content #order-summary table tbody tr th {
+  font-weight: bolder;
+}
+#hdr-bar .tooltip-content #order-summary table tbody tr td {
+  padding: 0.75rem 0;
+}
+#hdr-bar .tooltip-content #order-summary table tbody tr td:last-child::before {
+  content: "$";
+}
+#hdr-bar .tooltip-content #order-summary table tfoot tr th {
+  font-size: 1.35rem;
+}
+#hdr-bar .tooltip-content #order-summary table tfoot tr td {
+  border-top: 1px dashed #aaa;
+  padding: 1.5rem 0;
+}
+#hdr-bar .tooltip-content #order-summary table tfoot tr td:last-child::before {
+  content: "$";
+}
+
 #hdr-bar {
   position: sticky;
   top: 0;
@@ -53,6 +91,9 @@ main #recipe-choice-btn-group .btn:active {
   padding: 0.1rem 0.5rem;
   border-radius: 3px;
   font-size: 1.05rem;
+}
+#hdr-bar #cart-items-count.hidden {
+  display: none;
 }
 #hdr-bar .tooltip {
   margin: 0.5rem 2rem;
@@ -110,6 +151,128 @@ main #recipe-choice-btn-group .btn:active {
 }
 #hdr-bar .tooltip-content #default-summary p:last-child i {
   font-size: 1.5rem;
+}
+#hdr-bar .tooltip-content #default-summary.hidden {
+  display: none;
+}
+#hdr-bar .tooltip-content #order-summary #list-view-toggle-btn {
+  position: relative;
+  left: 40%;
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  border: 3px solid black;
+  background-color: transparent;
+}
+#hdr-bar .tooltip-content #order-summary #list-view-toggle-btn .pressed {
+  background-color: black;
+}
+#hdr-bar .tooltip-content #order-summary #list-view-toggle-btn .pressed i {
+  color: white;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list {
+  list-style-type: none;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li {
+  background-color: lightgray;
+  padding: 1.25rem 0.95rem;
+  border-radius: 10px;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-hdr {
+  list-style-type: inherit;
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-hdr li {
+  padding: 0;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-hdr li span {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-hdr li i {
+  font-size: 1.95rem;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-body {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  display: flex;
+  list-style-type: inherit;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-body::before {
+  content: "Ingredients:";
+  font-weight: bolder;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-body li {
+  padding: 0 0.25rem;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-body li:last-child {
+  padding-right: 0;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-body li:not(:last-child)::after {
+  content: ",";
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-body::after {
+  content: ".";
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-foot {
+  list-style-type: inherit;
+  border-top: 2px solid gray;
+  display: flex;
+  justify-content: flex-end;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-foot li {
+  font-size: 1.15rem;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-foot li:nth-child(2)::before {
+  content: "x";
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-foot li:nth-child(odd) {
+  font-weight: bold;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-foot li:last-child::before {
+  content: "$";
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-btn-group {
+  display: flex;
+  justify-content: space-around;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-btn-group .btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 0.65rem 1.2rem;
+  margin: 0;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
+  transition: all 0.5s ease-in-out;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-btn-group .btn:active {
+  box-shadow: none;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-btn-group .btn:disabled {
+  box-shadow: none;
+  opacity: 0.2;
+}
+#hdr-bar .tooltip-content #order-summary #order-summary-btn-group .btn i {
+  color: white;
+}
+#hdr-bar .tooltip-content #order-summary.hidden {
+  display: none;
 }
 
 main #main-section-listing {
