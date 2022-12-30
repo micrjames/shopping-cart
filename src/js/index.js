@@ -8,7 +8,11 @@ import { range } from "./range.js";
 
 let numIngredients = 0;
 orderSummaryTblFootRowTotal.textContent = priceFormatter.format(0.00);
+
+let recipeServingsCountTotal = 0;
 let recipeServingsCount = 0;
+controlsMinusBtn.disabled = true;
+
 cartItemsCount.textContent = 0;
 cartItemsCount.classList.add("hidden");
 tooltipContent.classList.add("hidden");
@@ -27,9 +31,11 @@ recipes.meals.forEach((recipe, recipeIndex) => {
 		   if(ingredients) numIngredients++;
 	   });
 
+	   recipeServingsCount = 0;
 	   controlsCount.textContent = 0;
 	   resetRecipeResult({figure, ingredients, instructions});
 	   setRecipeResult({figure, ingredients, instructions}, recipe);
+	   controlsMinusBtn.disabled = true;
    });
 
    recipeChoicesBtnGroup.appendChild(choiceBtn);
@@ -44,31 +50,37 @@ setRecipeResult({figure, ingredients, instructions}, recipe);
 });
 
 controlsMinusBtn.addEventListener("click", function() {
-   recipeServingsCount-=numIngredients;
+   recipeServingsCount--;
+   recipeServingsCountTotal -= numIngredients;
    if(recipeServingsCount >= 0) {
-	  controlsCount.textContent = recipeServingsCount;
-	  cartItemsCount.textContent = recipeServingsCount;
-	  
 	  if(recipeServingsCount == 0) {
-		 cartItemsCount.classList.add("hidden");
 		 orderSummary.classList.add("hidden");
 		 defaultSummary.classList.remove("hidden");
+		 controlsMinusBtn.disabled = true;
 	  } else {
-		 orderSummaryTblFootRowQty.textContent = recipeServingsCount;
+		 orderSummaryTblFootRowQty.textContent = recipeServingsCountTotal;
 	  }
    } else {
 	  recipeServingsCount = 0;
    }
+   controlsCount.textContent = recipeServingsCount;
+   cartItemsCount.textContent = recipeServingsCountTotal;
+
+   if(recipeServingsCountTotal) cartItemsCount.classList.remove("hidden");
+   else cartItemsCount.classList.add("hidden");
 });
 controlsPlusBtn.addEventListener("click", function() {
-   recipeServingsCount+=numIngredients;
+   recipeServingsCount++;
+   recipeServingsCountTotal += numIngredients;
    if(recipeServingsCount > 0) {
 	  cartItemsCount.classList.remove("hidden");
 	  orderSummary.classList.remove("hidden");
 	  defaultSummary.classList.add("hidden");
 
-	  orderSummaryTblFootRowQty.textContent = recipeServingsCount;
+	  orderSummaryTblFootRowQty.textContent = recipeServingsCountTotal;
+
+	  controlsMinusBtn.disabled = false;
    }
    controlsCount.textContent = recipeServingsCount;
-   cartItemsCount.textContent = recipeServingsCount;
+   cartItemsCount.textContent = recipeServingsCountTotal;
 });
