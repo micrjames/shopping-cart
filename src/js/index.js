@@ -54,20 +54,22 @@ controlsMinusBtn.addEventListener("click", function() {
    recipeServingsCountTotal -= numIngredients;
    if(recipeServingsCount >= 0) {
 	  if(recipeServingsCount == 0) {
-		 orderSummary.classList.add("hidden");
-		 defaultSummary.classList.remove("hidden");
 		 controlsMinusBtn.disabled = true;
 	  } else {
-		 orderSummaryTblFootRowQty.textContent = recipeServingsCountTotal;
 	  }
    } else {
 	  recipeServingsCount = 0;
    }
+   orderSummaryTblFootRowQty.textContent = recipeServingsCountTotal;
    controlsCount.textContent = recipeServingsCount;
    cartItemsCount.textContent = recipeServingsCountTotal;
 
    if(recipeServingsCountTotal) cartItemsCount.classList.remove("hidden");
-   else cartItemsCount.classList.add("hidden");
+   else {
+      orderSummary.classList.add("hidden");
+	  defaultSummary.classList.remove("hidden");
+	  cartItemsCount.classList.add("hidden");
+   }
 });
 controlsPlusBtn.addEventListener("click", function() {
    recipeServingsCount++;
@@ -77,10 +79,10 @@ controlsPlusBtn.addEventListener("click", function() {
 	  orderSummary.classList.remove("hidden");
 	  defaultSummary.classList.add("hidden");
 
-	  orderSummaryTblFootRowQty.textContent = recipeServingsCountTotal;
 
 	  controlsMinusBtn.disabled = false;
    }
+   orderSummaryTblFootRowQty.textContent = recipeServingsCountTotal;
    controlsCount.textContent = recipeServingsCount;
    cartItemsCount.textContent = recipeServingsCountTotal;
 });
