@@ -41,6 +41,8 @@ $primary-color: lightgray;
 			   }
 		   }
 		   #order-summary {
+			   height: 100%;
+			   overflow: scroll;
 			   #list-view-toggle-btn {
 				   position: relative;
 				   left: 40%;

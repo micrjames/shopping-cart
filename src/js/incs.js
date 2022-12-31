@@ -13,6 +13,11 @@ const orderSummaryTblFoot = orderSummaryTbl.children.namedItem("order-summary-tb
 const orderSummaryTblFootRow = orderSummaryTblFoot.children.namedItem("order-summary-tbl-foot-row");
 const orderSummaryTblFootRowQty = orderSummaryTblFootRow.children.namedItem("order-summary-tbl-foot-row-qty");
 const orderSummaryTblFootRowTotal = orderSummaryTblFootRow.children.namedItem("order-summary-tbl-foot-row-total");
+const osTblFoot = {
+   qty: orderSummaryTblFootRowQty,
+   total: orderSummaryTblFootRowTotal                                                                  
+};
+
 const orderSummaryBtnGroup = orderSummary.children.namedItem("order-summary-btn-group");
 const orderSummaryClearBtn = orderSummaryBtnGroup.children.namedItem("order-summary-btn-group-clear-btn");
 const orderSummaryCheckoutBtn = orderSummaryBtnGroup.children.namedItem("order-summary-btn-group-checkout-btn");
@@ -30,4 +35,4 @@ const controlsMinusBtn = controlsBtnGroup.children.namedItem("recipe-result-cont
 const controlsPlusBtn = controlsBtnGroup.children.namedItem("recipe-result-controls-btn-group-plus");
 const controlsCount = controlsBtnGroup.children.namedItem("recipe-result-controls-btn-group-count");
 
-export { recipeChoicesBtnGroup, figure, ingredients, instructions, controlsMinusBtn, controlsPlusBtn, controlsCount, cartItems, cartItemsCount, tooltipContent, defaultSummary, orderSummary, orderSummaryTblBdy, orderSummaryTblFootRowQty, orderSummaryTblFootRowTotal, orderSummaryClearBtn, orderSummaryCheckoutBtn };
+export { recipeChoicesBtnGroup, figure, ingredients, instructions, controlsMinusBtn, controlsPlusBtn, controlsCount, cartItems, cartItemsCount, tooltipContent, defaultSummary, orderSummary, orderSummaryTblBdy, osTblFoot, orderSummaryClearBtn, orderSummaryCheckoutBtn };

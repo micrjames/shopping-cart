@@ -61,12 +61,8 @@ const createTblBodyRowPrice = function(price) {
 };
 
 const createTblFoot = function(tblFoot, qty, total) {
-   const tblFootRow = tblFoot.children.namedItem("order-summary-tbl-foot-row");
-
-   const tblFootRowQty = tblFootRow.children.namedItem("order-summary-tbl-foot-row-qty");
-   tblFootRowQty.textContent = qty;
-   const tblFootRowTotal = tblFootRow.children.namedItem("order-summary-tbl-foot-row-total");
-   tblFootRowTotal.textContent = total;
+   tblFoot.qty.textContent = qty;
+   tblFoot.total.textContent = total;
 };
 
 export { createTblBody, createTblBodyRow, removeTblBody, createTblFoot };

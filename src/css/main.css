@@ -34,6 +34,7 @@ main #recipe-choice-btn-group .btn:active {
 
 #hdr-bar .tooltip-content #order-summary {
   text-align: center;
+  overflow: scroll;
 }
 #hdr-bar .tooltip-content #order-summary table {
   width: 100%;
@@ -154,6 +155,10 @@ main #recipe-choice-btn-group .btn:active {
 }
 #hdr-bar .tooltip-content #default-summary.hidden {
   display: none;
+}
+#hdr-bar .tooltip-content #order-summary {
+  height: 100%;
+  overflow: scroll;
 }
 #hdr-bar .tooltip-content #order-summary #list-view-toggle-btn {
   position: relative;

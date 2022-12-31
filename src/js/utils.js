@@ -5,12 +5,16 @@ const getIngredient = function(recipe, index) {
     return recipe[`strIngredient${index}`];
 };
 const getIngredients = function(recipe) {
+    let numIngredients = 0;
     let ingredientsArr = [];
     for(let i = 1; i < 20; i++) {
         const ingredient = getIngredient(recipe, i);
-        if(ingredient) ingredientsArr = [...ingredientsArr, ingredient];
+        if(ingredient) {
+		   numIngredients++;
+		   ingredientsArr = [...ingredientsArr, ingredient];
+		}
     }
-    return ingredientsArr;
+    return [ingredientsArr, numIngredients];
 };
 
 const setOrderTblVals = function(ingredients, recipeServingsCount, op) {
@@ -47,4 +51,4 @@ const calcTblTotals = function(tblRowValsArr, whichTotal) {
 	return total;
 };
 
-export { getIngredient, getIngredients, setOrderTblVals, calcTblTotals };
+export { getIngredients, setOrderTblVals, calcTblTotals };
