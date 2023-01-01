@@ -22,10 +22,19 @@ tooltipContent.classList.add("hidden");
 orderSummary.classList.add("hidden");
 controlsCount.textContent = recipeServingsCount;
 cartItems.addEventListener("click", function() {
+    if(tooltipContent.classList.contains("hidden")) {
+	   controlsMinusBtn.disabled = true;
+	   controlsPlusBtn.disabled = true;
+	} else {
+	   if(recipeServingsCount == 0) controlsMinusBtn.disabled = true;
+	   else controlsMinusBtn.disabled = false;
+	   controlsPlusBtn.disabled = false;
+	}
     tooltipContent.classList.toggle("hidden");
 
     removeTblBody(orderSummaryTblBdy); 
     createTblBody(orderSummaryTblBdy, tblRowValsArr);
+    createTblFoot(osTblFoot, calcTblTotals(tblRowValsArr, "qty"), priceFormatter.format(calcTblTotals(tblRowValsArr, "price"))); 
 });
 orderSummaryClearBtn.addEventListener("click", function() {
     recipeServingsCountTotal = 0;
@@ -75,7 +84,6 @@ controlsMinusBtn.addEventListener("click", function() {
    } else if(recipeServingsCount < 0) {
 	  recipeServingsCount = 0;
    }
-   createTblFoot(osTblFoot, calcTblTotals(tblRowValsArr, "qty"), priceFormatter.format(calcTblTotals(tblRowValsArr, "price"))); 
    controlsCount.textContent = recipeServingsCount;
    cartItemsCount.textContent = recipeServingsCountTotal;
 
@@ -98,7 +106,6 @@ controlsPlusBtn.addEventListener("click", function() {
 
 	  controlsMinusBtn.disabled = false;
    }
-   createTblFoot(osTblFoot, calcTblTotals(tblRowValsArr, "qty"), priceFormatter.format(calcTblTotals(tblRowValsArr, "price"))); 
    controlsCount.textContent = recipeServingsCount;
    cartItemsCount.textContent = recipeServingsCountTotal;
 });

@@ -44,7 +44,7 @@ const calcTblTotals = function(tblRowValsArr, whichTotal) {
     if(whichTotal == "qty") { 
 	   arr = tblRowValsArr.map(tblRowVals => tblRowVals.qty);
 	} else if(whichTotal =="price") {
-	   arr = tblRowValsArr.map(tblRowVals => +tblRowVals.price);
+	   arr = tblRowValsArr.map(tblRowVals => tblRowVals.qty * +tblRowVals.price);
 	}
 	const total = arr.reduce((sum, value) => sum + value);
 
