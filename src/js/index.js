@@ -43,6 +43,7 @@ orderSummaryClearBtn.addEventListener("click", function() {
     recipeServingsCount = 0;
 	controlsCount.textContent = recipeServingsCount;
     tblRowValsArr = [];
+    ingredientsArr = [];
 
 	removeTblBody(orderSummaryTblBdy);
     cartItemsCount.classList.add("hidden");
@@ -57,7 +58,9 @@ recipes.meals.forEach((recipe, recipeIndex) => {
    choiceBtn.textContent = `${recipeIndex}`;
    choiceBtn.addEventListener("click", function() {
 	   numIngredients = 0;
-	   [ingredientsArr, numIngredients] = getIngredients(recipe);
+	   let tempIngredientsArr;
+	   [tempIngredientsArr, numIngredients] = getIngredients(recipe);
+	   ingredientsArr = [...ingredientsArr, ...tempIngredientsArr];
 	   
 	   recipeServingsCount = 0;
 	   controlsCount.textContent = 0;
