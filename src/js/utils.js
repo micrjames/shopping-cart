@@ -17,26 +17,28 @@ const getIngredients = function(recipe) {
     return [ingredientsArr, numIngredients];
 };
 
-const setOrderTblVals = function(ingredients, recipeServingsCount, op) {
+const setOrderTblVals = function(tblRowValsArr, ingredients, recipeServingsCount, op) {
     let matchIndex = -1;
 
-    let tblRowValsArr = [];
+    let tempTblRowValsArr = tblRowValsArr;
+    console.log(ingredients);
     ingredients.forEach(ingredient => {
 	    const tblRowVals =  {};                                                                      
-	    matchIndex = tblRowValsArr.findIndex(values => values.item == ingredient);
+	    matchIndex = tempTblRowValsArr.findIndex(values => values.item == ingredient);
+	    console.log(matchIndex);
 	    if(matchIndex != -1) {
-		    if(op == "plus") tblRowValsArr[matchIndex].qty += recipeServingsCount;
-		    else if(op == "minus") tblRowValsArr[matchIndex].qty -= recipeServingsCount;
+		    if(op == "plus") tempTblRowValsArr[matchIndex].qty += 1;
+		    else if(op == "minus") tempTblRowValsArr[matchIndex].qty -= 1;
 		} else {
-			tblRowVals.qty = recipeServingsCount;
+			tblRowVals.qty = 1;
 		    tblRowVals.item = ingredient;
 		    tblRowVals.price = priceFormatter.format(setRandomPrice());
 
-		    tblRowValsArr = [...tblRowValsArr, tblRowVals];
+		    tempTblRowValsArr = [...tempTblRowValsArr, tblRowVals];
 		}
 	});
 
-    return tblRowValsArr;
+    return tempTblRowValsArr;
 };
 
 const calcTblTotals = function(tblRowValsArr, whichTotal) {

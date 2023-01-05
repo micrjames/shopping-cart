@@ -57,10 +57,12 @@ recipes.meals.forEach((recipe, recipeIndex) => {
    const choiceBtn = createBtn(`recipe-choice-btn-group-${recipeIndex}`, "btn");
    choiceBtn.textContent = `${recipeIndex}`;
    choiceBtn.addEventListener("click", function() {
+	   ingredientsArr = [];
 	   numIngredients = 0;
 	   let tempIngredientsArr;
 	   [tempIngredientsArr, numIngredients] = getIngredients(recipe);
 	   ingredientsArr = [...ingredientsArr, ...tempIngredientsArr];
+	   console.log(ingredientsArr);
 	   
 	   recipeServingsCount = 0;
 	   controlsCount.textContent = 0;
@@ -71,7 +73,6 @@ recipes.meals.forEach((recipe, recipeIndex) => {
 
    recipeChoicesBtnGroup.appendChild(choiceBtn);
 });
-
 const randomRecipeIndex = new Random(0, recipes.meals.length-1);
 const recipe = recipes.meals[randomRecipeIndex.integer];
 setRecipeResult({figure, ingredients, instructions}, recipe);
@@ -81,7 +82,9 @@ controlsMinusBtn.addEventListener("click", function() {
    recipeServingsCount--;
    recipeServingsCountTotal -= numIngredients;
 
-   tblRowValsArr = setOrderTblVals(ingredientsArr, recipeServingsCount, "minus");
+   console.log(ingredientsArr);
+   tblRowValsArr = setOrderTblVals(tblRowValsArr, ingredientsArr, recipeServingsCount, "minus");
+   console.log(tblRowValsArr);
    if(recipeServingsCount == 0) {
 	  controlsMinusBtn.disabled = true;
    } else if(recipeServingsCount < 0) {
@@ -101,7 +104,9 @@ controlsPlusBtn.addEventListener("click", function() {
    recipeServingsCount++;
    recipeServingsCountTotal += numIngredients;
 
-   tblRowValsArr = setOrderTblVals(ingredientsArr, recipeServingsCount, "plus");
+   console.log(ingredientsArr);
+   tblRowValsArr = setOrderTblVals(tblRowValsArr, ingredientsArr, recipeServingsCount, "plus");
+   console.log(tblRowValsArr);
    if(recipeServingsCount > 0) {
 	  cartItemsCount.classList.remove("hidden");
 	  orderSummary.classList.remove("hidden");
