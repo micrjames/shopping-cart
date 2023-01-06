@@ -17,28 +17,44 @@ const getIngredients = function(recipe) {
     return [ingredientsArr, numIngredients];
 };
 
-const setOrderTblVals = function(tblRowValsArr, ingredients, recipeServingsCount, op) {
-    let matchIndex = -1;
+const setIngredientsTblVals = function(tblRowValsArr, ingredients, op) {
+    return ingredients.map(ingredient => {
+	   const matchIndex = tblRowValsArr.findIndex(tblRowVals => tblRowVals.item == ingredient);
+	   if(matchIndex == -1) {
+		  return {
+			 qty: 1,
+			 item: ingredient,
+			 price: priceFormatter.format(setRandomPrice())
+		  };
+	   } else {
+		     let oppedValue;
+			 if(op == "plus") oppedValue = tblRowValsArr[matchIndex].qty + 1; 
+			 else if(op == "minus") oppedValue = tblRowValsArr[matchIndex].qty - 1;
+			 return {
+				qty: oppedValue,
+				item: tblRowValsArr[matchIndex].item,
+				price: tblRowValsArr[matchIndex].price
+			 };
+	   }
+   });
+};
+const setOrderTblVals = function(tblRowValsArr, ingredients, op) {
+   const tblRowItems = tblRowValsArr.map(tblRowVals => tblRowVals.item);
 
-    let tempTblRowValsArr = tblRowValsArr;
-    console.log(ingredients);
-    ingredients.forEach(ingredient => {
-	    const tblRowVals =  {};                                                                      
-	    matchIndex = tempTblRowValsArr.findIndex(values => values.item == ingredient);
-	    console.log(matchIndex);
-	    if(matchIndex != -1) {
-		    if(op == "plus") tempTblRowValsArr[matchIndex].qty += 1;
-		    else if(op == "minus") tempTblRowValsArr[matchIndex].qty -= 1;
-		} else {
-			tblRowVals.qty = 1;
-		    tblRowVals.item = ingredient;
-		    tblRowVals.price = priceFormatter.format(setRandomPrice());
+   const ingredientsObjArr =  setIngredientsTblVals(tblRowValsArr, ingredients, op);
+   const ingredientsItems = ingredientsObjArr.map(ingredientObj => ingredientObj.item);
 
-		    tempTblRowValsArr = [...tempTblRowValsArr, tblRowVals];
-		}
-	});
+   const excludedTblRowItemsIdx = tblRowItems.map((item, itemIdx) => {
+	  if(ingredientsItems.indexOf(item) == -1) {
+		 return itemIdx;
+	  }
+   }).filter(valIndex => valIndex !== undefined);
 
-    return tempTblRowValsArr;
+   const excludedTblRowItems = excludedTblRowItemsIdx.map(excludedTblRowItemIdx => {
+	   return tblRowValsArr[excludedTblRowItemIdx];
+   }); 
+
+   return [...excludedTblRowItems, ...ingredientsObjArr];
 };
 
 const calcTblTotals = function(tblRowValsArr, whichTotal) {

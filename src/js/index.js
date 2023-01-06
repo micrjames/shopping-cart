@@ -83,7 +83,7 @@ controlsMinusBtn.addEventListener("click", function() {
    recipeServingsCountTotal -= numIngredients;
 
    console.log(ingredientsArr);
-   tblRowValsArr = setOrderTblVals(tblRowValsArr, ingredientsArr, recipeServingsCount, "minus");
+   tblRowValsArr = setOrderTblVals(tblRowValsArr, ingredientsArr, "minus");
    console.log(tblRowValsArr);
    if(recipeServingsCount == 0) {
 	  controlsMinusBtn.disabled = true;
@@ -105,7 +105,7 @@ controlsPlusBtn.addEventListener("click", function() {
    recipeServingsCountTotal += numIngredients;
 
    console.log(ingredientsArr);
-   tblRowValsArr = setOrderTblVals(tblRowValsArr, ingredientsArr, recipeServingsCount, "plus");
+   tblRowValsArr = setOrderTblVals(tblRowValsArr, ingredientsArr, "plus");
    console.log(tblRowValsArr);
    if(recipeServingsCount > 0) {
 	  cartItemsCount.classList.remove("hidden");
