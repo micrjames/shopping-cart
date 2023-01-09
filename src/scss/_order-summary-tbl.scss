@@ -52,5 +52,8 @@
 			  }
 		   }
 		}
+		&.hidden {
+		   display: none;
+        }
     }
 } 

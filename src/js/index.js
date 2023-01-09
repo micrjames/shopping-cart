@@ -1,4 +1,4 @@
-import { recipeChoicesBtnGroup, figure, ingredients, instructions, controlsMinusBtn, controlsPlusBtn, controlsCount, cartItems, cartItemsCount, tooltipContent, defaultSummary, orderSummary, orderSummaryTblBdy, osTblFoot, orderSummaryClearBtn, orderSummaryCheckoutBtn } from "./incs.js";
+import { recipeChoicesBtnGroup, figure, ingredients, instructions, controlsMinusBtn, controlsPlusBtn, controlsCount, cartItems, cartItemsCount, tooltipContent, defaultSummary, orderSummary, orderSummaryTbl, orderSummaryTblBdy, osTblFoot, orderSummaryClearBtn, orderSummaryCheckoutBtn, orderSummaryList, orderSummaryListViewToggleBtn } from "./incs.js";
 import { createBtn } from "./DOMutils.js";
 import { setRecipeResult, resetRecipeResult } from "./recipeResults.js";
 import recipes from "../food_db.js";
@@ -6,6 +6,7 @@ import Random from "./Random.js";
 import { priceFormatter } from "./priceFormatter.js";
 import { getIngredients, setOrderTblVals, calcTblTotals } from "./utils.js";
 import { createTblBody, removeTblBody, createTblFoot } from "./orderSummaryTbl.js";
+import { createOrderList, removeOrderList } from "./orderSummaryList.js";
 
 let ingredientsArr = [];
 let numIngredients = 0;
@@ -13,6 +14,7 @@ let numIngredients = 0;
 let recipeServingsCountTotal = 0;
 cartItemsCount.textContent = recipeServingsCountTotal;
 let tblRowValsArr = [];
+let listItemValsArr = [];
 
 let recipeServingsCount = 0;
 controlsMinusBtn.disabled = true;
@@ -20,6 +22,7 @@ controlsMinusBtn.disabled = true;
 cartItemsCount.classList.add("hidden");
 tooltipContent.classList.add("hidden");
 orderSummary.classList.add("hidden");
+orderSummaryList.classList.add("hidden");
 controlsCount.textContent = recipeServingsCount;
 cartItems.addEventListener("click", function() {
     if(tooltipContent.classList.contains("hidden")) {
@@ -32,9 +35,14 @@ cartItems.addEventListener("click", function() {
 	}
     tooltipContent.classList.toggle("hidden");
 
-    removeTblBody(orderSummaryTblBdy); 
-    createTblBody(orderSummaryTblBdy, tblRowValsArr);
-    createTblFoot(osTblFoot, calcTblTotals(tblRowValsArr, "qty"), priceFormatter.format(calcTblTotals(tblRowValsArr, "price"))); 
+    if(!orderSummaryTbl.classList.contains("hidden")) {
+	   removeTblBody(orderSummaryTblBdy); 
+	   createTblBody(orderSummaryTblBdy, tblRowValsArr);
+	   createTblFoot(osTblFoot, calcTblTotals(tblRowValsArr, "qty"), priceFormatter.format(calcTblTotals(tblRowValsArr, "price"))); 
+	} else if(!orderSummaryList.classList.contains("hidden")) {
+	   removeOrderList(orderSummaryList);
+	   createOrderList(orderSummaryList, listItemValsArr);
+	}
 });
 orderSummaryClearBtn.addEventListener("click", function() {
     recipeServingsCountTotal = 0;
@@ -53,6 +61,10 @@ orderSummaryClearBtn.addEventListener("click", function() {
 	defaultSummary.classList.remove("hidden");
 });
 orderSummaryCheckoutBtn.addEventListener("click", function() {});
+orderSummaryListViewToggleBtn.addEventListener("click", function() {
+    orderSummaryTbl.classList.toggle("hidden");
+    orderSummaryList.classList.toggle("hidden");
+});
 recipes.meals.forEach((recipe, recipeIndex) => {
    const choiceBtn = createBtn(`recipe-choice-btn-group-${recipeIndex}`, "btn");
    choiceBtn.textContent = `${recipeIndex}`;
@@ -83,7 +95,9 @@ controlsMinusBtn.addEventListener("click", function() {
    recipeServingsCountTotal -= numIngredients;
 
    console.log(ingredientsArr);
-   tblRowValsArr = setOrderTblVals(tblRowValsArr, ingredientsArr, "minus");
+   if(!orderSummaryTbl.classList.contains("hidden")) {
+	  tblRowValsArr = setOrderTblVals(tblRowValsArr, ingredientsArr, "minus");
+   }
    console.log(tblRowValsArr);
    if(recipeServingsCount == 0) {
 	  controlsMinusBtn.disabled = true;
@@ -105,7 +119,9 @@ controlsPlusBtn.addEventListener("click", function() {
    recipeServingsCountTotal += numIngredients;
 
    console.log(ingredientsArr);
-   tblRowValsArr = setOrderTblVals(tblRowValsArr, ingredientsArr, "plus");
+   if(!orderSummaryTbl.classList.contains("hidden")) {
+	  tblRowValsArr = setOrderTblVals(tblRowValsArr, ingredientsArr, "plus");
+   }
    console.log(tblRowValsArr);
    if(recipeServingsCount > 0) {
 	  cartItemsCount.classList.remove("hidden");

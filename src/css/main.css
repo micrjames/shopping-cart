@@ -70,6 +70,9 @@ main #recipe-choice-btn-group .btn:active {
 #hdr-bar .tooltip-content #order-summary table tfoot tr td:last-child::before {
   content: "$";
 }
+#hdr-bar .tooltip-content #order-summary table.hidden {
+  display: none;
+}
 
 #hdr-bar {
   position: sticky;
