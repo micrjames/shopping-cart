@@ -32,45 +32,302 @@ main #recipe-choice-btn-group .btn:active {
   box-shadow: none;
 }
 
-#hdr-bar .tooltip-content #order-summary {
+main #main-section-listing #recipe-result-figure-thumb {
+  width: 100%;
+  height: 350px;
+}
+main #main-section-listing #recipe-result-figure-title {
+  position: relative;
+  bottom: 325px;
+  background-color: white;
+  padding: 0.75rem 0;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+main #main-section-listing #recipe-result-ingredients-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+main #main-section-listing #recipe-result-ingredients ul {
+  list-style-position: inside;
+  margin: 0 2rem;
+  column-count: 2;
+}
+main #main-section-listing #recipe-result-ingredients ul li span:first-child {
+  margin: 0 0.25rem;
+}
+
+main #main-section-listing #recipe-result-instructions {
+  padding: 1.2rem;
+}
+main #main-section-listing #recipe-result-instructions-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+main #main-section-listing #recipe-result-instructions-text-list {
+  list-style-type: none;
+  list-style-position: inside;
+  counter-reset: instruction-step;
+  column-count: 2;
+}
+main #main-section-listing #recipe-result-instructions-text-list li::before {
+  counter-increment: instruction-step;
+  content: "Step " counter(instruction-step) ". ";
+  font-weight: bolder;
+}
+main #main-section-listing #recipe-result-instructions-text-list li::after {
+  content: ".";
+}
+
+main #main-section-listing #recipe-result-controls-btn-group .btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.75rem;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  margin: 0 0.5rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
+  transition: all 0.5s ease-in-out;
+  border-radius: 50%;
+  background-color: transparent;
+  color: black;
+}
+main #main-section-listing #recipe-result-controls-btn-group .btn:first-child {
+  margin-right: 0.75rem;
+}
+main #main-section-listing #recipe-result-controls-btn-group .btn:active {
+  box-shadow: none;
+}
+main #main-section-listing #recipe-result-controls-btn-group .btn:disabled {
+  box-shadow: none;
+  opacity: 0.2;
+}
+
+main #main-section-listing #recipe-result-controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.95rem 0;
+}
+main #main-section-listing #recipe-result-controls-preamble {
+  font-size: 1.25rem;
+}
+main #main-section-listing #recipe-result-controls-btn-group {
+  display: inline-flex;
+  align-items: center;
+}
+main #main-section-listing #recipe-result-controls-btn-group-count {
+  font-size: 1.25rem;
+}
+
+#hdr-bar .tooltip .tooltip-content {
+  right: 0;
+  width: 450px;
+  height: 625px;
+  top: 120%;
+  left: -380px;
+}
+
+#hdr-bar .tooltip .tooltip-content #default-summary {
+  text-align: center;
+}
+#hdr-bar .tooltip .tooltip-content #default-summary i {
+  margin: 5rem 0;
+  font-size: 15rem;
+  color: gray;
+  opacity: 0.5;
+}
+#hdr-bar .tooltip .tooltip-content #default-summary p {
+  font-size: 2rem;
+  font-weight: bolder;
+  color: red;
+}
+#hdr-bar .tooltip .tooltip-content #default-summary p:last-child {
+  color: black;
+  font-size: 1.2rem;
+}
+#hdr-bar .tooltip .tooltip-content #default-summary p:last-child i {
+  font-size: 1.5rem;
+}
+#hdr-bar .tooltip .tooltip-content #default-summary.hidden {
+  display: none;
+}
+
+#hdr-bar .tooltip .tooltip-content #order-summary {
   text-align: center;
   overflow: scroll;
 }
-#hdr-bar .tooltip-content #order-summary table {
+#hdr-bar .tooltip .tooltip-content #order-summary table {
   width: 100%;
   font-size: 1.2rem;
   border-collapse: collapse;
 }
-#hdr-bar .tooltip-content #order-summary table caption {
+#hdr-bar .tooltip .tooltip-content #order-summary table caption {
   font-size: 1.5rem;
   padding: 1.25rem;
 }
-#hdr-bar .tooltip-content #order-summary table thead tr {
+#hdr-bar .tooltip .tooltip-content #order-summary table thead tr {
   border-bottom: 1px solid #ddd;
 }
-#hdr-bar .tooltip-content #order-summary table thead tr th {
+#hdr-bar .tooltip .tooltip-content #order-summary table thead tr th {
   padding: 0.75rem 0;
 }
-#hdr-bar .tooltip-content #order-summary table tbody tr th {
+#hdr-bar .tooltip .tooltip-content #order-summary table tbody tr th {
   font-weight: bolder;
 }
-#hdr-bar .tooltip-content #order-summary table tbody tr td {
+#hdr-bar .tooltip .tooltip-content #order-summary table tbody tr td {
   padding: 0.75rem 0;
 }
-#hdr-bar .tooltip-content #order-summary table tbody tr td:last-child::before {
+#hdr-bar .tooltip .tooltip-content #order-summary table tbody tr td:last-child::before {
   content: "$";
 }
-#hdr-bar .tooltip-content #order-summary table tfoot tr th {
+#hdr-bar .tooltip .tooltip-content #order-summary table tfoot tr th {
   font-size: 1.35rem;
 }
-#hdr-bar .tooltip-content #order-summary table tfoot tr td {
+#hdr-bar .tooltip .tooltip-content #order-summary table tfoot tr td {
   border-top: 1px dashed #aaa;
   padding: 1.5rem 0;
 }
-#hdr-bar .tooltip-content #order-summary table tfoot tr td:last-child::before {
+#hdr-bar .tooltip .tooltip-content #order-summary table tfoot tr td:last-child::before {
   content: "$";
 }
-#hdr-bar .tooltip-content #order-summary table.hidden {
+#hdr-bar .tooltip .tooltip-content #order-summary table.hidden {
+  display: none;
+}
+
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list {
+  list-style-type: none;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li {
+  background-color: lightgray;
+  padding: 1.25rem 0.95rem;
+  border-radius: 10px;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-hdr {
+  list-style-type: inherit;
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-hdr li {
+  padding: 0;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-hdr li span {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-hdr li i {
+  font-size: 1.95rem;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-body {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  display: flex;
+  list-style-type: inherit;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-body::before {
+  content: "Ingredients:";
+  font-weight: bolder;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-body li {
+  padding: 0 0.25rem;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-body li:last-child {
+  padding-right: 0;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-body li:not(:last-child)::after {
+  content: ",";
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-body::after {
+  content: ".";
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-foot {
+  list-style-type: inherit;
+  border-top: 2px solid gray;
+  display: flex;
+  justify-content: flex-end;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-foot li {
+  font-size: 1.15rem;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-foot li:nth-child(2)::before {
+  content: "x";
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-foot li:nth-child(odd) {
+  font-weight: bold;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-foot li:last-child::before {
+  content: "$";
+}
+
+#hdr-bar .tooltip .tooltip-content #order-summary #list-view-toggle-btn {
+  position: relative;
+  left: 40%;
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  border: 3px solid black;
+  background-color: transparent;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #list-view-toggle-btn .pressed {
+  background-color: black;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #list-view-toggle-btn .pressed i {
+  color: white;
+}
+
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-btn-group .btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 0.65rem 1.2rem;
+  margin: 0;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
+  transition: all 0.5s ease-in-out;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-btn-group .btn:active {
+  box-shadow: none;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-btn-group .btn:disabled {
+  box-shadow: none;
+  opacity: 0.2;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-btn-group .btn i {
+  color: white;
+}
+
+#hdr-bar .tooltip .tooltip-content #order-summary {
+  height: 100%;
+  overflow: scroll;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-btn-group {
+  display: flex;
+  justify-content: space-around;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary.hidden {
   display: none;
 }
 
@@ -128,160 +385,6 @@ main #recipe-choice-btn-group .btn:active {
 #hdr-bar .tooltip-content.hidden {
   display: none;
 }
-#hdr-bar .tooltip-content {
-  right: 0;
-  width: 450px;
-  height: 625px;
-  top: 120%;
-  left: -380px;
-}
-#hdr-bar .tooltip-content #default-summary {
-  text-align: center;
-}
-#hdr-bar .tooltip-content #default-summary i {
-  margin: 5rem 0;
-  font-size: 15rem;
-  color: gray;
-  opacity: 0.5;
-}
-#hdr-bar .tooltip-content #default-summary p {
-  font-size: 2rem;
-  font-weight: bolder;
-  color: red;
-}
-#hdr-bar .tooltip-content #default-summary p:last-child {
-  color: black;
-  font-size: 1.2rem;
-}
-#hdr-bar .tooltip-content #default-summary p:last-child i {
-  font-size: 1.5rem;
-}
-#hdr-bar .tooltip-content #default-summary.hidden {
-  display: none;
-}
-#hdr-bar .tooltip-content #order-summary {
-  height: 100%;
-  overflow: scroll;
-}
-#hdr-bar .tooltip-content #order-summary #list-view-toggle-btn {
-  position: relative;
-  left: 40%;
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  font-family: inherit;
-  font-size: 1rem;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  margin: 0;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  border: 3px solid black;
-  background-color: transparent;
-}
-#hdr-bar .tooltip-content #order-summary #list-view-toggle-btn .pressed {
-  background-color: black;
-}
-#hdr-bar .tooltip-content #order-summary #list-view-toggle-btn .pressed i {
-  color: white;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list {
-  list-style-type: none;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li {
-  background-color: lightgray;
-  padding: 1.25rem 0.95rem;
-  border-radius: 10px;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-hdr {
-  list-style-type: inherit;
-  padding: 0.75rem 0.5rem;
-  display: flex;
-  justify-content: space-between;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-hdr li {
-  padding: 0;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-hdr li span {
-  font-size: 1.5rem;
-  font-weight: bolder;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-hdr li i {
-  font-size: 1.95rem;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-body {
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
-  display: flex;
-  list-style-type: inherit;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-body::before {
-  content: "Ingredients:";
-  font-weight: bolder;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-body li {
-  padding: 0 0.25rem;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-body li:last-child {
-  padding-right: 0;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-body li:not(:last-child)::after {
-  content: ",";
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-body::after {
-  content: ".";
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-foot {
-  list-style-type: inherit;
-  border-top: 2px solid gray;
-  display: flex;
-  justify-content: flex-end;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-foot li {
-  font-size: 1.15rem;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-foot li:nth-child(2)::before {
-  content: "x";
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-foot li:nth-child(odd) {
-  font-weight: bold;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-list li .order-list-foot li:last-child::before {
-  content: "$";
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-btn-group {
-  display: flex;
-  justify-content: space-around;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-btn-group .btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  font-family: inherit;
-  font-size: 1.2rem;
-  text-decoration: none;
-  padding: 0.65rem 1.2rem;
-  margin: 0;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
-  transition: all 0.5s ease-in-out;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-btn-group .btn:active {
-  box-shadow: none;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-btn-group .btn:disabled {
-  box-shadow: none;
-  opacity: 0.2;
-}
-#hdr-bar .tooltip-content #order-summary #order-summary-btn-group .btn i {
-  color: white;
-}
-#hdr-bar .tooltip-content #order-summary.hidden {
-  display: none;
-}
 
 main #main-section-listing {
   background-color: lightgray;
@@ -290,98 +393,6 @@ main #main-section-listing {
   margin: 2% auto;
   border-radius: 5px;
   overflow: scroll;
-}
-main #main-section-listing #recipe-result-figure-thumb {
-  width: 100%;
-  height: 350px;
-}
-main #main-section-listing #recipe-result-figure-title {
-  position: relative;
-  bottom: 325px;
-  background-color: white;
-  padding: 0.75rem 0;
-  text-align: center;
-  font-size: 1.5rem;
-}
-main #main-section-listing #recipe-result-ingredients-title {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-}
-main #main-section-listing #recipe-result-ingredients ul {
-  list-style-position: inside;
-  margin: 0 2rem;
-  column-count: 2;
-}
-main #main-section-listing #recipe-result-ingredients ul li span:first-child {
-  margin: 0 0.25rem;
-}
-main #main-section-listing #recipe-result-instructions {
-  padding: 1.2rem;
-}
-main #main-section-listing #recipe-result-instructions-title {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-}
-main #main-section-listing #recipe-result-instructions-text-list {
-  list-style-type: none;
-  list-style-position: inside;
-  counter-reset: instruction-step;
-  column-count: 2;
-}
-main #main-section-listing #recipe-result-instructions-text-list li::before {
-  counter-increment: instruction-step;
-  content: "Step " counter(instruction-step) ". ";
-  font-weight: bolder;
-}
-main #main-section-listing #recipe-result-instructions-text-list li::after {
-  content: ".";
-}
-main #main-section-listing #recipe-result-controls {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0.95rem 0;
-}
-main #main-section-listing #recipe-result-controls-preamble {
-  font-size: 1.25rem;
-}
-main #main-section-listing #recipe-result-controls-btn-group {
-  display: inline-flex;
-  align-items: center;
-}
-main #main-section-listing #recipe-result-controls-btn-group .btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  font-family: inherit;
-  font-size: 0.75rem;
-  text-decoration: none;
-  padding: 0.75rem 1rem;
-  margin: 0 0.5rem;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
-  transition: all 0.5s ease-in-out;
-  border-radius: 50%;
-  background-color: transparent;
-  color: black;
-}
-main #main-section-listing #recipe-result-controls-btn-group .btn:first-child {
-  margin-right: 0.75rem;
-}
-main #main-section-listing #recipe-result-controls-btn-group .btn:active {
-  box-shadow: none;
-}
-main #main-section-listing #recipe-result-controls-btn-group .btn:disabled {
-  box-shadow: none;
-  opacity: 0.2;
-}
-main #main-section-listing #recipe-result-controls-btn-group-count {
-  font-size: 1.25rem;
 }
 
 #ftr-bar {

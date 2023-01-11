@@ -1,0 +1,24 @@
+%recipe-result-controls-btn {
+   .btn {
+	  @include button(0.75rem, 0.75rem 1rem, 0 0.5rem);
+	  @include box-shadow(6px, 2px, 9px, 2px, rgba(0, 0, 0, 0.6), false); 
+	  @include transition-ease;
+		  
+	  border-radius: 50%;
+	  background-color: transparent;
+	  color: black;                                                                               
+		 
+	  &:first-child {
+		  margin-right: 0.75rem;
+	  }
+		  
+	  &:active {
+		  box-shadow: none;
+	  }
+		  
+	  &:disabled {
+		  box-shadow: none;
+		  opacity: 0.2;
+	  }
+   }
+}

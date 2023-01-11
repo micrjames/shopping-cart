@@ -1,0 +1,20 @@
+@import "order-summary-tbl", "order-summary-list", "list-view-toggle-btn", "order-summary-btn";
+
+%order-summary {
+   #order-summary {
+       height: 100%;
+       overflow: scroll;
+       @extend %list-view-toggle;
+       @extend %order-summary-list;
+       @extend %order-summary-tbl;
+       #order-summary-btn-group {
+           display: flex;
+           justify-content: space-around;
+
+           @extend %order-summary-btn;
+       }
+       &.hidden {
+           display: none;
+       }
+   }
+}

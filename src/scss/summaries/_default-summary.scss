@@ -1,0 +1,28 @@
+%default-summary {
+   #default-summary {
+       text-align: center;
+       i {
+           margin: 5rem 0;
+           font-size: 15rem;
+           color: gray;
+           opacity: 0.5;
+       }
+       p {
+           font-size: 2rem;
+           font-weight: bolder;
+           color: red;
+
+           &:last-child {
+               color: black;
+               font-size: 1.2rem;
+
+               i {
+                   font-size: 1.5rem;
+               }
+           }                                                                                       
+       }
+       &.hidden {
+           display: none;
+       }
+   }
+}

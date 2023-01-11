@@ -1,0 +1,12 @@
+%tooltip-content {
+   .tooltip-content {
+       right: 0;
+       width: 450px;
+       height: 625px;
+       top: 120%;  
+       left: -380px;
+          
+       @extend %default-summary;
+       @extend %order-summary;
+   }
+}

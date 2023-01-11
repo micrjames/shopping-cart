@@ -1,4 +1,4 @@
-@import "utils/utils";
+@import "../../utils/utils";
 
 @mixin tooltip($font-size, $background-color, $text-color) {
    position: relative;

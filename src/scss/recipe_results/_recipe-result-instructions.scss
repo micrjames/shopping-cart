@@ -1,0 +1,26 @@
+%recipe-result-instructions {
+   #recipe-result-instructions {
+	  padding: 1.2rem;
+	  &-title {
+		  text-align: center;
+		  margin-bottom: 1.5rem;
+		  font-size: 1.5rem;
+	  }
+	  &-text-list {
+		  list-style-type: none;
+		  list-style-position: inside;
+		  counter-reset: instruction-step; 
+		  column-count: 2;
+		  li {
+			  &::before {
+				  counter-increment: instruction-step;
+				  content: "Step " counter(instruction-step) ". ";
+				  font-weight: bolder;
+			  }
+			  &::after {
+				  content: ".";
+			  }
+		   }
+	  }
+   }
+}

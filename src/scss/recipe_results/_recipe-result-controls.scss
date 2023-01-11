@@ -1,0 +1,24 @@
+@import "./recipe-result-controls-btn";
+
+%recipe-result-controls {
+   #recipe-result-controls {
+	  width: 100%;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  margin: 0.95rem 0;
+	  &-preamble {
+		  font-size: 1.25rem;
+	  }
+	  &-btn-group {
+		  display: inline-flex;
+		  align-items: center;
+		   
+		  @extend %recipe-result-controls-btn;
+	
+		  &-count {
+			  font-size: 1.25rem;
+		  }
+	  }
+   }
+}

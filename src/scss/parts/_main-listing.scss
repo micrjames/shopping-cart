@@ -1,0 +1,18 @@
+@import "../recipe_results/recipe-result-figure", "../recipe_results/recipe-result-ingredients", "../recipe_results/recipe-result-instructions", "../recipe_results/recipe-result-controls";
+
+@mixin main-listing($bg-color) {
+    background-color: $bg-color;
+
+	width: 100% - 2 * 15%;
+	height: 100% - 2 * 5%;
+
+	margin: 2% auto;
+	border-radius: 5px;
+
+	overflow: scroll;
+
+	@extend %recipe-result-figure;
+	@extend %recipe-result-ingredients;
+	@extend %recipe-result-instructions;
+	@extend %recipe-result-controls;
+}

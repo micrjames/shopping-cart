@@ -69,4 +69,13 @@ const calcTblTotals = function(tblRowValsArr, whichTotal) {
 	return total;
 };
 
-export { getIngredients, setOrderTblVals, calcTblTotals };
+const setOrderListVals = function(recipeCaptionText, listItemValsArr, ingredients, op) {
+	  return [{
+		  name: recipeCaptionText,
+		  ingredients: ingredients, 
+		  qty: 1,
+		  totals: 1
+	  }];
+};
+
+export { getIngredients, setOrderTblVals, setOrderListVals, calcTblTotals };

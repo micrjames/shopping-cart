@@ -1,5 +1,3 @@
-// @import "tooltip";
-
 @mixin hdr-bar($bg-color, $icon-color: black) {
    position: sticky;
    top: 0;
@@ -28,6 +26,5 @@
 			  display: none;
 		  }
 	  }
-	  // @include tooltip(1rem, white, black);
    }
 }
