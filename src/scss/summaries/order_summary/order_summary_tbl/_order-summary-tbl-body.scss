@@ -1,0 +1,18 @@
+%order-summary-tbl-body {
+   tbody {
+       tr {
+           th {
+               font-weight: bolder;
+           }
+           td {
+               padding: 0.75rem 0;
+
+               &:last-child {
+                   &::before {
+                       content: "$";
+                   }
+               }
+           }
+       }
+   }   
+}

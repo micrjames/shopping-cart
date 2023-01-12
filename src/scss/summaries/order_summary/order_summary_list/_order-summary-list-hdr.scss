@@ -1,0 +1,17 @@
+%order-summary-list-hdr {
+   list-style-type: inherit;
+   padding: 0.75rem 0.5rem;
+   display: flex;
+   justify-content: space-between;
+   
+   li {
+       padding: 0;
+       span {
+           font-size: 1.5rem;
+           font-weight: bolder;
+       }
+       i {
+           font-size: 1.95rem;
+       }
+   }
+}

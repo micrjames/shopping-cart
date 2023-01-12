@@ -162,25 +162,18 @@ main #main-section-listing #recipe-result-controls-btn-group-count {
   display: none;
 }
 
-#hdr-bar .tooltip .tooltip-content #order-summary {
-  text-align: center;
-  overflow: scroll;
-}
-#hdr-bar .tooltip .tooltip-content #order-summary table {
-  width: 100%;
-  font-size: 1.2rem;
-  border-collapse: collapse;
-}
 #hdr-bar .tooltip .tooltip-content #order-summary table caption {
   font-size: 1.5rem;
   padding: 1.25rem;
 }
+
 #hdr-bar .tooltip .tooltip-content #order-summary table thead tr {
   border-bottom: 1px solid #ddd;
 }
 #hdr-bar .tooltip .tooltip-content #order-summary table thead tr th {
   padding: 0.75rem 0;
 }
+
 #hdr-bar .tooltip .tooltip-content #order-summary table tbody tr th {
   font-weight: bolder;
 }
@@ -190,6 +183,7 @@ main #main-section-listing #recipe-result-controls-btn-group-count {
 #hdr-bar .tooltip .tooltip-content #order-summary table tbody tr td:last-child::before {
   content: "$";
 }
+
 #hdr-bar .tooltip .tooltip-content #order-summary table tfoot tr th {
   font-size: 1.35rem;
 }
@@ -200,18 +194,20 @@ main #main-section-listing #recipe-result-controls-btn-group-count {
 #hdr-bar .tooltip .tooltip-content #order-summary table tfoot tr td:last-child::before {
   content: "$";
 }
+
+#hdr-bar .tooltip .tooltip-content #order-summary {
+  text-align: center;
+  overflow: scroll;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary table {
+  width: 100%;
+  font-size: 1.2rem;
+  border-collapse: collapse;
+}
 #hdr-bar .tooltip .tooltip-content #order-summary table.hidden {
   display: none;
 }
 
-#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list {
-  list-style-type: none;
-}
-#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li {
-  background-color: lightgray;
-  padding: 1.25rem 0.95rem;
-  border-radius: 10px;
-}
 #hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-hdr {
   list-style-type: inherit;
   padding: 0.75rem 0.5rem;
@@ -228,6 +224,7 @@ main #main-section-listing #recipe-result-controls-btn-group-count {
 #hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-hdr li i {
   font-size: 1.95rem;
 }
+
 #hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-body {
   margin-bottom: 1rem;
   font-size: 1.25rem;
@@ -250,6 +247,7 @@ main #main-section-listing #recipe-result-controls-btn-group-count {
 #hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-body::after {
   content: ".";
 }
+
 #hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li .order-list-foot {
   list-style-type: inherit;
   border-top: 2px solid gray;
@@ -269,6 +267,14 @@ main #main-section-listing #recipe-result-controls-btn-group-count {
   content: "$";
 }
 
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list {
+  list-style-type: none;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-list li {
+  background-color: lightgray;
+  padding: 1.25rem 0.95rem;
+  border-radius: 10px;
+}
 #hdr-bar .tooltip .tooltip-content #order-summary #list-view-toggle-btn {
   position: relative;
   left: 40%;

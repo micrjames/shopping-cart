@@ -1,0 +1,19 @@
+%order-summary-tbl-foot {
+   tfoot {                                                                                         
+       tr {
+           th {
+               font-size: 1.35rem;
+           }
+           td {
+               border-top: 1px dashed #aaa;
+               padding: 1.5rem 0;
+   
+               &:last-child {
+                   &::before {
+                       content: "$";
+                   }
+               }
+           }
+       }
+   }
+}

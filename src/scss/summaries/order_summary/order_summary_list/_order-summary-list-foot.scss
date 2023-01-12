@@ -1,0 +1,22 @@
+%order-summary-list-foot {
+   .order-list-foot {
+       list-style-type: inherit;
+       border-top: 2px solid gray;
+       display: flex;
+       justify-content: flex-end;
+       li {
+           font-size: 1.15rem;
+           &:nth-child(2) {
+               &::before {
+                   content: "x";
+               }
+           }
+           &:nth-child(odd) {
+               font-weight: bold;
+           }
+           &:last-child::before {
+               content: "$";
+           }
+       }
+   }
+}
