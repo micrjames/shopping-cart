@@ -369,7 +369,6 @@ main #main-section-listing #recipe-result-controls-btn-group-count {
 }
 #hdr-bar .tooltip {
   margin: 0.5rem 2rem;
-  cursor: pointer;
   position: relative;
 }
 #hdr-bar .tooltip-content {

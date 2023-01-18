@@ -5,7 +5,6 @@ $primary-color: lightgray;
     @include hdr-bar($primary-color);
 	.tooltip {
 	    margin: 0.5rem 2rem;
-		cursor: pointer;
 	    @include tooltip(1rem, white, black);
 
 		@extend %tooltip-content;

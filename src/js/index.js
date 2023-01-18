@@ -41,7 +41,9 @@ cartItems.addEventListener("click", function() {
 	   createTblFoot(osTblFoot, calcTblTotals(tblRowValsArr, "qty"), priceFormatter.format(calcTblTotals(tblRowValsArr, "price"))); 
 	} else if(!orderSummaryList.classList.contains("hidden")) {
 	   removeOrderList(orderSummaryList);
-	   createOrderList(orderSummaryList, listItemValsArr);
+	   createOrderList(orderSummaryList, listItemValsArr, function() {
+		   alert(`${this.classList} closed`);
+	   });
 	}
 });
 orderSummaryClearBtn.addEventListener("click", function() {
