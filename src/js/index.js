@@ -41,9 +41,15 @@ cartItems.addEventListener("click", function() {
 	   createTblFoot(osTblFoot, calcTblTotals(tblRowValsArr, "qty"), priceFormatter.format(calcTblTotals(tblRowValsArr, "price"))); 
 	} else if(!orderSummaryList.classList.contains("hidden")) {
 	   removeOrderList(orderSummaryList);
-	   createOrderList(orderSummaryList, listItemValsArr, function() {
-		   alert(`${this.classList} closed`);
-	   });
+	   createOrderList(orderSummaryList, listItemValsArr);
+	   const orderSummaryListItems = orderSummaryList.children;
+	   for(const orderSummaryListItem of orderSummaryListItems) {
+		   const orderSummaryListItemHdr = orderSummaryListItem.children[0];
+		   const orderSummaryListItemHdrCloseBtn = orderSummaryListItemHdr.children[1];
+		   orderSummaryListItemHdrCloseBtn.addEventListener("click", function() {
+			   alert("clicked");
+		   });
+	   }
 	}
 });
 orderSummaryClearBtn.addEventListener("click", function() {
@@ -62,6 +68,7 @@ orderSummaryClearBtn.addEventListener("click", function() {
     orderSummary.classList.add("hidden");
 	defaultSummary.classList.remove("hidden");
 });
+
 orderSummaryCheckoutBtn.addEventListener("click", function() {});
 orderSummaryListViewToggleBtn.addEventListener("click", function() {
     orderSummaryTbl.classList.toggle("hidden");
