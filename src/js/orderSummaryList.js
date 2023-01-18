@@ -1,8 +1,8 @@
 import { removeChildren, createListItemEl, createSpan, addIcon } from "./utils/DOMutils.js";
 
-const createOrderList = function(orderList, orderListValsArr) {
+const createOrderList = function(orderList, orderListValsArr, delListener) {
     orderListValsArr.forEach(orderListVals => {
-	    const orderListItem = createOrderListItem(orderListVals);
+	    const orderListItem = createOrderListItem(orderListVals, delListener);
         orderList.appendChild(orderListItem);
 	}); 
 };
@@ -11,10 +11,10 @@ const removeOrderList = function(orderList) {
     removeChildren(orderList);
 };
 
-const createOrderListItem = function(orderListVals) {
+const createOrderListItem = function(orderListVals, delListener) {
     const li = document.createElement("li");
 
-    const listHdr = createOrderListHdr(orderListVals.name);
+    const listHdr = createOrderListHdr(orderListVals.name, delListener);
     li.appendChild(listHdr);
 
     const listBody = createOrderListBody(orderListVals.ingredients);
@@ -26,7 +26,7 @@ const createOrderListItem = function(orderListVals) {
     return li;
 }
 
-const createOrderListHdr = function(recipe_name) {
+const createOrderListHdr = function(recipe_name, delListener) {
     const ul = document.createElement("ul");
     ul.setAttribute("class", "order-list-hdr");
 
@@ -36,6 +36,7 @@ const createOrderListHdr = function(recipe_name) {
     const iconLI = document.createElement("li");
     addIcon(iconLI, "xmark");
     iconLI.setAttribute("class", "order-list-delete");
+    iconLI.addEventListener("click", delListener)
     ul.appendChild(iconLI)
 
     return ul;

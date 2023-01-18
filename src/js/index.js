@@ -1,5 +1,5 @@
 import { recipeChoicesBtnGroup, figure, ingredients, instructions, controlsMinusBtn, controlsPlusBtn, controlsCount, cartItems, cartItemsCount, tooltipContent, defaultSummary, orderSummary, orderSummaryTbl, orderSummaryTblBdy, osTblFoot, orderSummaryClearBtn, orderSummaryCheckoutBtn, orderSummaryList, orderSummaryListViewToggleBtn } from "./incs.js";
-import { createBtn } from "./utils/DOMutils.js";
+import { createBtn, removeChildren } from "./utils/DOMutils.js";
 import { setRecipeResult, resetRecipeResult } from "./recipeResults.js";
 import recipes from "../food_db.js";
 import Random from "./utils/Random.js";
@@ -41,15 +41,11 @@ cartItems.addEventListener("click", function() {
 	   createTblFoot(osTblFoot, calcTblTotals(tblRowValsArr, "qty"), priceFormatter.format(calcTblTotals(tblRowValsArr, "price"))); 
 	} else if(!orderSummaryList.classList.contains("hidden")) {
 	   removeOrderList(orderSummaryList);
-	   createOrderList(orderSummaryList, listItemValsArr);
-	   const orderSummaryListItems = orderSummaryList.children;
-	   for(const orderSummaryListItem of orderSummaryListItems) {
-		   const orderSummaryListItemHdr = orderSummaryListItem.children[0];
-		   const orderSummaryListItemHdrCloseBtn = orderSummaryListItemHdr.children[1];
-		   orderSummaryListItemHdrCloseBtn.addEventListener("click", function() {
-			   alert("clicked");
-		   });
-	   }
+	   createOrderList(orderSummaryList, listItemValsArr, function() {
+			 listItemValsArr = [];
+			 removeOrderList(orderSummaryList);
+			 createOrderList(orderSummaryList, listItemValsArr);
+	   });
 	}
 });
 orderSummaryClearBtn.addEventListener("click", function() {
