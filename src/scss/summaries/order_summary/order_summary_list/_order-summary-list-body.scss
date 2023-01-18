@@ -7,6 +7,7 @@
        }
        font-size: 1.25rem;
        display: flex;
+	   flex-wrap: wrap;
        list-style-type: inherit;
        li {
            padding: 0 0.25rem;

@@ -5,13 +5,17 @@
        list-style-type: none;
        li {
            background-color: lightgray;
-           padding: 1.25rem 0.95rem;
+           padding: 1.15rem 0.95rem;
            border-radius: 10px;
            .order-list-hdr {
 			   @extend %order-summary-list-hdr;
 		   }
 		   @extend %order-summary-list-body;
 		   @extend %order-summary-list-foot;
+	   }
+
+	   &.hidden {
+		   display: none;
 	   }
 	}
 }

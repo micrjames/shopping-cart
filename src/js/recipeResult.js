@@ -1,4 +1,4 @@
-import { removeChildren, createSpan, createListItem } from "./DOMutils.js";
+import { removeChildren, createSpan, createListItem } from "./utils/DOMutils.js";
 
 const createTitle = function(figure, text) {
    const title = figure.children.namedItem("recipe-result-figure-title");

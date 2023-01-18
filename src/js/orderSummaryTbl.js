@@ -1,4 +1,4 @@
-import { removeChildren } from "./DOMutils.js";
+import { removeChildren } from "./utils/DOMutils.js";
 
 const createTblBody = function(tblBody, tblRowValsArr) {
     tblRowValsArr.forEach(tblRowVals => {

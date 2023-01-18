@@ -1,4 +1,4 @@
-import { removeChildren, createListItemEl, createSpan, addIcon } from "./DOMutils.js";
+import { removeChildren, createListItemEl, createSpan, addIcon } from "./utils/DOMutils.js";
 
 const createOrderList = function(orderList, orderListValsArr) {
     orderListValsArr.forEach(orderListVals => {

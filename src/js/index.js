@@ -1,10 +1,10 @@
 import { recipeChoicesBtnGroup, figure, ingredients, instructions, controlsMinusBtn, controlsPlusBtn, controlsCount, cartItems, cartItemsCount, tooltipContent, defaultSummary, orderSummary, orderSummaryTbl, orderSummaryTblBdy, osTblFoot, orderSummaryClearBtn, orderSummaryCheckoutBtn, orderSummaryList, orderSummaryListViewToggleBtn } from "./incs.js";
-import { createBtn } from "./DOMutils.js";
+import { createBtn } from "./utils/DOMutils.js";
 import { setRecipeResult, resetRecipeResult } from "./recipeResults.js";
 import recipes from "../food_db.js";
-import Random from "./Random.js";
-import { priceFormatter } from "./priceFormatter.js";
-import { getIngredients, setOrderTblVals, setOrderListVals, calcTblTotals } from "./utils.js";
+import Random from "./utils/Random.js";
+import { priceFormatter } from "./utils/priceFormatter.js";
+import { getIngredients, setOrderTblVals, setOrderListVals, calcTblTotals } from "./utils/utils.js";
 import { createTblBody, removeTblBody, createTblFoot } from "./orderSummaryTbl.js";
 import { createOrderList, removeOrderList } from "./orderSummaryList.js";
 
