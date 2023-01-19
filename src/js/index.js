@@ -42,9 +42,18 @@ cartItems.addEventListener("click", function() {
 	} else if(!orderSummaryList.classList.contains("hidden")) {
 	   removeOrderList(orderSummaryList);
 	   createOrderList(orderSummaryList, listItemValsArr, function() {
+		     const orderSummaryListHdr = this.parentElement;
+		     const orderSummaryListItem = orderSummaryListHdr.parentElement;
+		     const numOrderSummaryListItems = orderSummaryListItem.parentElement.children.length;
+		     const osLIndex = 0;
+
+		     while(orderSummaryListItem.previousElementSibling) {
+			 }
+		     /*
 			 listItemValsArr = [];
 			 removeOrderList(orderSummaryList);
 			 createOrderList(orderSummaryList, listItemValsArr);
+			 */
 	   });
 	}
 });
