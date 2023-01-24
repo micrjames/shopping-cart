@@ -70,12 +70,16 @@ const calcTblTotals = function(tblRowValsArr, whichTotal) {
 };
 
 const setOrderListVals = function(recipeCaptionText, listItemValsArr, ingredients, op) {
-	  return [{
-		  name: recipeCaptionText,
-		  ingredients: ingredients, 
-		  qty: 1,
-		  totals: 1
-	  }];
+    /* TODO
+	 * use 'op' to inc/dec qty
+	 */
+    const listVals = {
+	  name: recipeCaptionText,
+	  ingredients: ingredients, 
+	  qty: 1,
+	  totals: 1
+	};
+	return [...listItemValsArr, listVals];
 };
 
 export { getIngredients, setOrderTblVals, setOrderListVals, calcTblTotals };

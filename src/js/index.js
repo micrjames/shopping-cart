@@ -44,16 +44,26 @@ cartItems.addEventListener("click", function() {
 	   createOrderList(orderSummaryList, listItemValsArr, function() {
 		     const orderSummaryListHdr = this.parentElement;
 		     const orderSummaryListItem = orderSummaryListHdr.parentElement;
-		     const numOrderSummaryListItems = orderSummaryListItem.parentElement.children.length;
-		     const osLIndex = 0;
+		     const orderSummaryListItems = orderSummaryListItem.parentElement;
+		     const numOrderSummaryListItems = orderSummaryListItems.children.length;
+		     
+		     let offsetIndex = 0;
 
 		     while(orderSummaryListItem.previousElementSibling) {
+				offsetIndex++;
 			 }
-		     /*
-			 listItemValsArr = [];
+
+		     const osLIndex = (numOrderSummaryListItems - 1) - offsetIndex;
+		     listItemValsArr.splice(osLIndex, 1); 
+		     
 			 removeOrderList(orderSummaryList);
 			 createOrderList(orderSummaryList, listItemValsArr);
-			 */
+
+		     if(orderSummaryListItems.children.length) {
+				/* TODO
+				 * remove these same ingredients from the tblRowValsArr
+				 */
+		     }
 	   });
 	}
 });
@@ -131,6 +141,7 @@ controlsPlusBtn.addEventListener("click", function() {
 
    tblRowValsArr = setOrderTblVals(tblRowValsArr, ingredientsArr, "plus");
    listItemValsArr = setOrderListVals(figure.children[1].textContent, listItemValsArr, ingredientsArr, "plus");
+   console.log(listItemValsArr);
    if(recipeServingsCount > 0) {
 	  cartItemsCount.classList.remove("hidden");
 	  orderSummary.classList.remove("hidden");
