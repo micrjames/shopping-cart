@@ -76,7 +76,7 @@ const setOrderListVals = function(recipeCaptionText, listItemValsArr, ingredient
     const listVals = {
 	  name: recipeCaptionText,
 	  ingredients: ingredients, 
-	  qty: 1,
+	  qty: ingredients.length,
 	  totals: 1
 	};
 	return [...listItemValsArr, listVals];

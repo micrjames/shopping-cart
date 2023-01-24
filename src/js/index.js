@@ -41,7 +41,7 @@ cartItems.addEventListener("click", function() {
 	   createTblFoot(osTblFoot, calcTblTotals(tblRowValsArr, "qty"), priceFormatter.format(calcTblTotals(tblRowValsArr, "price"))); 
 	} else if(!orderSummaryList.classList.contains("hidden")) {
 	   removeOrderList(orderSummaryList);
-	   createOrderList(orderSummaryList, listItemValsArr, function() {
+	   createOrderList(orderSummaryList, listItemValsArr, tblRowValsArr, function() {
 		     const orderSummaryListHdr = this.parentElement;
 		     const orderSummaryListItem = orderSummaryListHdr.parentElement;
 		     const orderSummaryListItems = orderSummaryListItem.parentElement;

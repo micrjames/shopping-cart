@@ -1,8 +1,15 @@
 import { removeChildren, createListItemEl, createSpan, addIcon } from "./utils/DOMutils.js";
+import { priceFormatter } from "./utils/priceFormatter.js";
 
-const createOrderList = function(orderList, orderListValsArr, delListener) {
+const createOrderList = function(orderList, orderListValsArr, orderTblValsArr, delListener) {
     orderListValsArr.forEach(orderListVals => {
-	    const orderListItem = createOrderListItem(orderListVals, delListener);
+	    let priceList = [];
+	    orderTblValsArr.forEach(orderTblVals => {
+		    if(orderListVals.ingredients.includes(orderTblVals.item))
+		       priceList = [...priceList, orderTblVals.price];
+		});
+	    
+	    const orderListItem = createOrderListItem(orderListVals, priceList, delListener);
         orderList.appendChild(orderListItem);
 	}); 
 };
@@ -11,7 +18,7 @@ const removeOrderList = function(orderList) {
     removeChildren(orderList);
 };
 
-const createOrderListItem = function(orderListVals, delListener) {
+const createOrderListItem = function(orderListVals, priceList, delListener) {
     const li = document.createElement("li");
 
     const listHdr = createOrderListHdr(orderListVals.name, delListener);
@@ -20,7 +27,8 @@ const createOrderListItem = function(orderListVals, delListener) {
     const listBody = createOrderListBody(orderListVals.ingredients);
     li.appendChild(listBody);
 
-    const listFoot = createOrderListFoot(orderListVals.qty, orderListVals.totals);
+    const listTotal = priceList.reduce((acc, item) => +acc + +item);
+    const listFoot = createOrderListFoot(orderListVals.qty, priceFormatter.format(listTotal));
     li.appendChild(listFoot);
 
     return li;
