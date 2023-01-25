@@ -136,6 +136,38 @@ main #main-section-listing #recipe-result-controls-btn-group-count {
   top: 120%;
   left: -380px;
 }
+#hdr-bar .tooltip .tooltip-content #checkout i {
+  font-size: 2.75rem;
+}
+#hdr-bar .tooltip .tooltip-content #checkout > i {
+  margin: 5rem 0;
+  font-size: 15rem;
+  color: gray;
+  opacity: 0.5;
+}
+#hdr-bar .tooltip .tooltip-content #checkout p {
+  font-size: 2rem;
+  font-weight: bolder;
+  color: red;
+}
+#hdr-bar .tooltip .tooltip-content #checkout .btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin: 3rem 0 0 0;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid black;
+}
+#hdr-bar .tooltip .tooltip-content #checkout.hidden {
+  display: none;
+}
 
 #hdr-bar .tooltip .tooltip-content #default-summary {
   text-align: center;
@@ -303,6 +335,9 @@ main #main-section-listing #recipe-result-controls-btn-group-count {
 #hdr-bar .tooltip .tooltip-content #order-summary #list-view-toggle-btn .pressed i {
   color: white;
 }
+#hdr-bar .tooltip .tooltip-content #order-summary #list-view-toggle-btn.hidden {
+  display: none;
+}
 
 #hdr-bar .tooltip .tooltip-content #order-summary #order-summary-btn-group .btn {
   display: inline-block;
@@ -337,6 +372,9 @@ main #main-section-listing #recipe-result-controls-btn-group-count {
 #hdr-bar .tooltip .tooltip-content #order-summary #order-summary-btn-group {
   display: flex;
   justify-content: space-around;
+}
+#hdr-bar .tooltip .tooltip-content #order-summary #order-summary-btn-group.hidden {
+  display: none;
 }
 #hdr-bar .tooltip .tooltip-content #order-summary.hidden {
   display: none;

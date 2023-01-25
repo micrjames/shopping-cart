@@ -70,16 +70,26 @@ const calcTblTotals = function(tblRowValsArr, whichTotal) {
 };
 
 const setOrderListVals = function(recipeCaptionText, listItemValsArr, ingredients, op) {
-    /* TODO
-	 * use 'op' to inc/dec qty
-	 */
-    const listVals = {
-	  name: recipeCaptionText,
-	  ingredients: ingredients, 
-	  qty: ingredients.length,
-	  totals: 1
-	};
-	return [...listItemValsArr, listVals];
+	const matchIndex = listItemValsArr.findIndex(listItemVals => listItemVals.name == recipeCaptionText);
+    console.log(matchIndex);
+    if(matchIndex != -1) {
+	   let oppedValue;
+	   if(op == "plus") oppedValue = listItemValsArr[matchIndex].qty + ingredients.length; 
+	   else if(op == "minus") oppedValue = listItemValsArr[matchIndex].qty - ingredients.length; 
+	   return [{
+			name: recipeCaptionText,
+			ingredients: ingredients, 
+			qty: oppedValue,
+			totals: 1
+	   }];
+	} else {
+	   return [...listItemValsArr, {
+			name: recipeCaptionText,
+			ingredients: ingredients, 
+			qty: ingredients.length,
+			totals: 1
+	   }];
+	}
 };
 
 export { getIngredients, setOrderTblVals, setOrderListVals, calcTblTotals };

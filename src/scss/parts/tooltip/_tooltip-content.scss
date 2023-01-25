@@ -6,6 +6,30 @@
        top: 120%;  
        left: -380px;
           
+	   #checkout {
+		  i {
+			  font-size: 2.75rem;
+		  }
+		  & > i {
+			  margin: 5rem 0;
+			  font-size: 15rem;
+			  color: gray;
+			  opacity: 0.5;
+		  }
+		  p {
+			  font-size: 2rem;
+			  font-weight: bolder;
+			  color: red;
+		  }
+		  .btn {
+			  @include button(1rem, 0.5rem 1rem, 3rem 0 0 0);
+			  background-color: transparent;
+			  border: 1px solid black;
+		  }
+		  &.hidden {
+			  display: none;
+		  }
+	   }
        @extend %default-summary;
        @extend %order-summary;
    }

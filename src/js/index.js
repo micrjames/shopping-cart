@@ -1,5 +1,5 @@
-import { recipeChoicesBtnGroup, figure, ingredients, instructions, controlsMinusBtn, controlsPlusBtn, controlsCount, cartItems, cartItemsCount, tooltipContent, defaultSummary, orderSummary, orderSummaryTbl, orderSummaryTblBdy, osTblFoot, orderSummaryClearBtn, orderSummaryCheckoutBtn, orderSummaryList, orderSummaryListViewToggleBtn } from "./incs.js";
-import { createBtn, removeChildren } from "./utils/DOMutils.js";
+import { recipeChoicesBtnGroup, figure, ingredients, instructions, controlsMinusBtn, controlsPlusBtn, controlsCount, cartItems, cartItemsCount, tooltipContent, defaultSummary, orderSummary, orderSummaryTbl, orderSummaryTblBdy, osTblFoot, orderSummaryClearBtn, orderSummaryCheckoutBtn, orderSummaryList, orderSummaryListViewToggleBtn, checkout, retCheckoutBtn, orderSummaryBtnGroup } from "./incs.js";
+import { createBtn } from "./utils/DOMutils.js";
 import { setRecipeResult, resetRecipeResult } from "./recipeResults.js";
 import recipes from "../food_db.js";
 import Random from "./utils/Random.js";
@@ -23,6 +23,7 @@ cartItemsCount.classList.add("hidden");
 tooltipContent.classList.add("hidden");
 orderSummary.classList.add("hidden");
 orderSummaryList.classList.add("hidden");
+checkout.classList.add("hidden");
 controlsCount.textContent = recipeServingsCount;
 cartItems.addEventListener("click", function() {
     if(tooltipContent.classList.contains("hidden")) {
@@ -51,17 +52,28 @@ orderSummaryClearBtn.addEventListener("click", function() {
     recipeServingsCount = 0;
 	controlsCount.textContent = recipeServingsCount;
     tblRowValsArr = [];
-    ingredientsArr = [];
 
 	removeTblBody(orderSummaryTblBdy);
     cartItemsCount.classList.add("hidden");
-    createTblFoot(osTblFoot, 0, priceFormatter.format(0.00)); 
 
     orderSummary.classList.add("hidden");
 	defaultSummary.classList.remove("hidden");
 });
 
-orderSummaryCheckoutBtn.addEventListener("click", function() {});
+orderSummaryCheckoutBtn.addEventListener("click", function() {
+    checkout.classList.remove("hidden");
+    orderSummaryTbl.classList.add("hidden");
+    orderSummaryList.classList.add("hidden");
+    orderSummaryListViewToggleBtn.classList.add("hidden");
+    orderSummaryBtnGroup.classList.add("hidden");
+});
+retCheckoutBtn.addEventListener("click", function() {
+    checkout.classList.add("hidden");
+    orderSummaryTbl.classList.remove("hidden");
+    orderSummaryList.classList.remove("hidden");
+    orderSummaryListViewToggleBtn.classList.remove("hidden");
+    orderSummaryBtnGroup.classList.remove("hidden");
+});
 orderSummaryListViewToggleBtn.addEventListener("click", function() {
     orderSummaryTbl.classList.toggle("hidden");
     orderSummaryList.classList.toggle("hidden");

@@ -12,6 +12,10 @@
            justify-content: space-around;
 
            @extend %order-summary-btn;
+
+		   &.hidden {
+			   display: none;
+		   }
        }
        &.hidden {
            display: none;
