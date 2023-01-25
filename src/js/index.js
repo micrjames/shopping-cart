@@ -41,30 +41,7 @@ cartItems.addEventListener("click", function() {
 	   createTblFoot(osTblFoot, calcTblTotals(tblRowValsArr, "qty"), priceFormatter.format(calcTblTotals(tblRowValsArr, "price"))); 
 	} else if(!orderSummaryList.classList.contains("hidden")) {
 	   removeOrderList(orderSummaryList);
-	   createOrderList(orderSummaryList, listItemValsArr, tblRowValsArr, function() {
-		     const orderSummaryListHdr = this.parentElement;
-		     const orderSummaryListItem = orderSummaryListHdr.parentElement;
-		     const orderSummaryListItems = orderSummaryListItem.parentElement;
-		     const numOrderSummaryListItems = orderSummaryListItems.children.length;
-		     
-		     let offsetIndex = 0;
-
-		     while(orderSummaryListItem.previousElementSibling) {
-				offsetIndex++;
-			 }
-
-		     const osLIndex = (numOrderSummaryListItems - 1) - offsetIndex;
-		     listItemValsArr.splice(osLIndex, 1); 
-		     
-			 removeOrderList(orderSummaryList);
-			 createOrderList(orderSummaryList, listItemValsArr);
-
-		     if(orderSummaryListItems.children.length) {
-				/* TODO
-				 * remove these same ingredients from the tblRowValsArr
-				 */
-		     }
-	   });
+	   createOrderList(orderSummaryList, listItemValsArr, tblRowValsArr);
 	}
 });
 orderSummaryClearBtn.addEventListener("click", function() {
@@ -141,7 +118,6 @@ controlsPlusBtn.addEventListener("click", function() {
 
    tblRowValsArr = setOrderTblVals(tblRowValsArr, ingredientsArr, "plus");
    listItemValsArr = setOrderListVals(figure.children[1].textContent, listItemValsArr, ingredientsArr, "plus");
-   console.log(listItemValsArr);
    if(recipeServingsCount > 0) {
 	  cartItemsCount.classList.remove("hidden");
 	  orderSummary.classList.remove("hidden");
