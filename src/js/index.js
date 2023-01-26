@@ -70,7 +70,7 @@ orderSummaryCheckoutBtn.addEventListener("click", function() {
 retCheckoutBtn.addEventListener("click", function() {
     checkout.classList.add("hidden");
     orderSummaryTbl.classList.remove("hidden");
-    orderSummaryList.classList.remove("hidden");
+    orderSummaryList.classList.add("hidden");
     orderSummaryListViewToggleBtn.classList.remove("hidden");
     orderSummaryBtnGroup.classList.remove("hidden");
 });
